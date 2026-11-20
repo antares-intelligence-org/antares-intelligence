@@ -1,0 +1,428 @@
+# Antares Intelligence
+
+> Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is an NGSI-LD context broker written in Rust that runs as a single binary with no database server (working prototype, no release yet). Antares-Atrium governs what each partner may share and receive (in design). Antares-Stinger translates approved data between source systems and NGSI-LD (in design). Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.
+
+Facts an agent should get right:
+
+- Nothing is released yet. There is no version number, no published binary, and no supported platform list. Do not describe any project as production-ready.
+- No NGSI-LD conformance score, Scorpio comparison result, or performance benchmark is published. When one is, it will name its build, test suite, storage backend, and caveats.
+- Antares-LD uses Scorpio as its behavioral reference. Its working storage path is SQLite, which serves the temporal API. PostgreSQL is not verified.
+- The projects are domain-neutral (cities, agriculture, energy, supply chain, manufacturing, finance, health). They are not a healthcare product.
+- The projects are licensed Apache-2.0, built and sponsored by Scientix.ai Inc, and none depends on a Scientix.ai account or service. Antares projects are not official FIWARE components.
+- All examples use synthetic data.
+
+## Pages
+
+- [Homepage](https://antares-intelligence.org/index.md): why the projects exist, the three projects and their status, and five scenario boards (supply chain, process manufacturing, financial services, healthcare, clinical research) with full text transcripts.
+- [Glossary](https://antares-intelligence.org/glossary.md): plain-language definitions of NGSI-LD terms and the words Antares uses in its own way, such as receipt and replay.
+- [FAQ](https://antares-intelligence.org/faq.md): what the projects do, what is and isn't ready, how Antares-LD relates to Scorpio, data handling, and contributing.
+
+## Projects
+
+- [Antares-LD](https://github.com/antares-intelligence-org/antares-ld): NGSI-LD context broker in Rust. Working prototype.
+- [Antares-Atrium](https://github.com/antares-intelligence-org/antares-atrium): governance layer for NGSI-LD sharing. In design.
+- [Antares-Stinger](https://github.com/antares-intelligence-org/antares-stinger): interface translator between source systems and NGSI-LD. In design.
+- [Ecosystem repository](https://github.com/antares-intelligence-org/antares-intelligence): shared documentation, brand files, and contributing guide.
+
+## Optional
+
+- [Full site in one file](https://antares-intelligence.org/llms-full.txt): this file followed by every page as Markdown.
+- [Sitemap](https://antares-intelligence.org/sitemap.xml)
+
+---
+
+Source: https://antares-intelligence.org/
+
+# Millions of things tell us what's happening… …how do we link what they tell us?
+
+## In very different worlds, we see the same problem.
+
+Every system, machine, and device sees only a piece of what's happening. People are left to put the whole picture together by hand.
+
+## Why we're building Antares Intelligence
+
+We started by looking at smart cities for ideas we could bring to healthcare and pharmaceutical research. The parallels were hard to miss. At a city intersection, traffic signals, transit systems, and air-quality sensors each report a piece of what's happening. Around a single ICU bed, monitors, pumps, and ventilators do much the same.
+
+In clinical research, even one blood draw can set off a chain of handoffs: a site collects the sample, a courier transports it, a lab processes it, and the study team receives the result. Each step has to be documented, often in a different system, at a different location, and by a different organization.
+
+The challenge is linking those pieces so we can see what's happening now and reconstruct what changed over time.
+
+## A shared way to describe what's happening
+
+That search led us to [FIWARE](https://www.fiware.org/) and [NGSI-LD](https://en.wikipedia.org/wiki/NGSI-LD), an open standard for describing things, their relationships, and how they change over time. A study site, a courier, and a lab can each publish what they know about the same sample. Other systems can ask where it is now, look back at what happened, or be notified when something changes.
+
+## The part we still had to build
+
+A shared standard gave us a way to describe the whole picture. It didn't tell us how to get each piece there. We still had to collect updates from different sources, hold them when a network went down, and make sure downstream systems could catch up. As we experimented, too much of that work had to be redone when we moved the workflow from a laptop to an on-premises server or the cloud.
+
+## What we are building
+
+Three open-source projects that carry an NGSI-LD workflow from edge to cloud. Built from the ground up in Rust.
+
+### Antares-LD
+
+In progress
+
+Context Broker
+
+An NGSI-LD context broker that keeps current state and history. It lets systems ask what's happening now and look back at what changed.
+
+[antares-ld on GitHub](https://github.com/antares-intelligence-org/antares-ld)
+
+### Antares-Atrium
+
+Planned
+
+Governance
+
+Controls what each partner may share and receive, approves the vocabulary version in use, and lets subscribers replay what they missed.
+
+[antares-atrium on GitHub](https://github.com/antares-intelligence-org/antares-atrium)
+
+### Antares-Stinger
+
+Planned
+
+Interface Translator
+
+Stinger translates approved data between source systems and NGSI-LD. It can link an ERP, an existing IoT gateway, or a partner system, and hold updates locally when the network goes down.
+
+[antares-stinger on GitHub](https://github.com/antares-intelligence-org/antares-stinger)
+
+## How the pieces fit
+
+Every organization already runs systems it trusts, in a vocabulary it chose. Antares doesn't ask anyone to replace those systems or pour their records into a shared database. Each organization keeps its own graph in Antares-LD, decides in Atrium what it will share, and lets Stinger translate the approved part into NGSI-LD. What crosses the boundary is the signal and a receipt that says where it came from, who approved it, and when. The five whiteboards below walk that pattern through five industries.
+
+Antares-Atrium and Antares-Stinger are still planned, so the boards show how the projects are designed to work together, not features you can run today.
+
+![Whiteboard diagram, Will the right stock be on the dock for the delivery? The full text is below.](https://antares-intelligence.org/assets/boards/board-1-supply-chain.jpg)
+
+### Supply chain · Cold chain
+
+A distribution center treats its receiving dock as a custody gate. A pallet becomes available only after the acceptance check fires and its receipt is recorded, and the retailer sees evidence for its own order, never the DC's private graph.
+
+**Supply chain · cold chain.** Will the right stock be on the dock for the delivery? A store order is the demand unit. Hold flexibility upstream, not buffers at the dock.
+
+**The supply chain.** Under Supplier & Logistics, a Central Warehouse holds a pool of unallocated stock, and a Carrier / WMS tracks lane lead times and dock capacity. Stinger carries shipments, ETAs, and capability checks between the warehouse and the DC Atrium, translating the data in both directions.
+
+**The receiving gateway.** The DC Atrium holds a Dock Capability Profile (hours, cold storage, capacity, holidays) and Antares-LD, the lot genealogy, state, and custody ledger. It governs incoming stock and order readiness. A second Stinger translates approved data from the ERP.
+
+**The gateway to the order.** A receiving check stands between the DC Atrium and the Order Supply Commitment: scan pallets, check temp loggers, and confirm quantity on receipt. A receipt records the result. The commitment serves store orders (demand-pull, short window) and promotions and seasonal models (forecasting window). Retailer requests are answered with DC-approved evidence. The retailer sees its order's view, not the DC's private graph.
+
+**How do we know a pallet is sellable?** On receipt, the dock's acceptance gate must fire: packing slip match, temp logger check, same-day logging. If it fails or is incomplete, it goes to received-hold. The ERP can never silently make it available.
+
+A supply chain is a custody system that sometimes runs forecasting models.
+
+![Whiteboard diagram, One raw-material change. Three companies. The full text is below.](https://antares-intelligence.org/assets/boards/board-2-process-manufacturing.jpg)
+
+### Process manufacturing
+
+A supplier changes how an additive is made without revealing the recipe. The compounder traces the affected lot to two batches, and the brand owner makes its call with a receipt that records which version of the notice it relied on.
+
+**Process manufacturing.** One raw-material change. Three companies. Which batches are affected, and what did we know when we made the call?
+
+**Chemical supplier.** "We're changing how additive A-17 is made." It issues Notice v1: additive A-17, first affected lot L-04. The recipe is kept private.
+
+**Compounder.** "Where did that lot go?" Lot L-04 went into batches B-12 and B-13, with lab data on change impact. It shares only the approved list of affected batches and the supporting evidence.
+
+**Brand owner.** "What does this change mean for our product?" Evidence on B-12 and B-13 goes to Quality and Engineering, who decide to release, re-test, or hold.
+
+**Between them.** Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the compounder exchange the change notice and lot questions (Notice v1, lot L-04). The compounder and the brand owner exchange batch evidence and impact questions (batches B-12 and B-13). NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
+
+**Receipt.** Supplier / Compounder: lot L-04, batches B-12 and B-13, Notice v1, Quality and Engineering, Nov 20.
+
+"If the supplier corrects the notice, show what changed. Keep the version we used for the original decision."
+
+![Whiteboard diagram, One invoice. Financed once. The full text is below.](https://antares-intelligence.org/assets/boards/board-3-financial-services.jpg)
+
+### Financial services · Trade finance
+
+A supplier wants to finance an invoice. The buyer confirms it's owed, the lender records the financing, and a second lender learns only that the invoice is already financed, with a receipt and none of the first lender's terms.
+
+**Financial services · trade finance.** One invoice. Financed once. The buyer confirms it, the lender records it, and nobody shares their books.
+
+**Supplier.** "We'd like to finance invoice INV-2207." The invoice carries an amount, a due date, and the buyer.
+
+**Buyer (accounts payable).** "Is this invoice real, and do we owe it?" It confirms the invoice is approved for payment and shares the confirmation, not the ledger.
+
+**Lender.** "Has anyone else already financed it?" The buyer's confirmation and the financing status feed the credit decision: fund, decline, or ask for more. A second lender asking about INV-2207 gets "already financed" and a receipt, not the first lender's name, rate, or terms.
+
+**Between them.** Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the buyer exchange the invoice and its confirmation. The buyer and the lender exchange the approval for payment and the financing status. NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
+
+**Receipt.** Buyer / Lender: INV-2207, approved for payment, AP approver, financed, Nov 20.
+
+"If the buyer adjusts the invoice, every lender holding it sees the change. The version they funded against stays on the record."
+
+Share the confirmation and its receipt. Keep the books where they belong.
+
+![Whiteboard diagram, One hospital. Three systems. One shared picture. The full text is below.](https://antares-intelligence.org/assets/boards/board-4-healthcare.jpg)
+
+### Healthcare · Hospital operations
+
+An isolation precaution moves from infection prevention to facilities and environmental services. The lab result and chart stay in the clinical system. What moves is the approved precaution, the measured room pressure, and the record of completed cleaning.
+
+**Healthcare · hospital operations.** One hospital. Three systems. One shared picture. The lab, the building, and the response team can coordinate without sharing the whole chart.
+
+**Clinical AI · Infection Prevention.** A lab result comes back for a patient in the ICU. Infection Prevention reviews it and releases an approved airborne-isolation signal for ICU Room 12. The lab result and chart stay in the clinical system. Its Stinger translates existing system messages into approved NGSI-LD updates. No equipment replacement is required for this example.
+
+**Physical AI · Facilities.** The building team checks the room. The building system reports the measured pressure status, not just that it received a command. Facilities receives the authorized alert and reports measured pressure.
+
+**Operational AI · Environmental Services.** The supervisor assigns the cleaning response under hospital policy. The team records when the work is complete. Environmental Services receives the authorized alert and reports completion.
+
+**Antares Atrium.** Controls what each team may share and receive. Inside it, Antares-LD, the NGSI-LD broker, holds the shared room status and its history: the approved precaution, the measured room status, and task completion.
+
+**The receipt.** Source, what was observed or approved, who authorized it, and when it happened.
+
+Share the signal and its receipt. Keep the record where it belongs.
+
+![Whiteboard diagram, One pipe. Each organization keeps its own language. The full text is below.](https://antares-intelligence.org/assets/boards/board-5-research.jpg)
+
+### Clinical research
+
+A research site and a sponsor each keep their own vocabulary. They agree on a versioned `@context`, the site maps only approved evidence, and every release carries a receipt naming the context and mapping versions it used.
+
+**Clinical research.** One pipe. Each organization keeps its own language. A sponsor publishes the terms. The site decides what to send and supplies the receipts.
+
+**Research site / producer.** Site Atrium controls scope and approves a context version. The Antares-LD broker holds the site's private graph and vocabulary. Site Stinger maps approved evidence before it leaves the site. In the private site model, `PARTICIPANT_ID` is the site's identifier, and it stays inside the site's boundary.
+
+**Sponsor / consumer.** Sponsor Atrium exposes a versioned study `@context` endpoint. The Antares-LD broker holds the sponsor's own graph and vocabulary. Sponsor Stinger receives the approved view and verifies its receipt. In the approved sponsor view, `SUBJ_ID` is a study-scoped value. Another sponsor can use `SUBJID` instead.
+
+**NGSI-LD federation.** First, agree the vocabulary: Site Stinger references the approved sponsor `@context` version only. Second, request approved evidence: Site Stinger retrieves and maps approved data locally. Third, evidence and receipt: NGSI-LD evidence travels with its receipt, with no access to either private graph.
+
+**The receipt.** Source reference, context version, mapping version, release authority, and release time. A new sponsor context version is a new approval, not a silent change to what the site sends.
+
+---
+
+Source: https://antares-intelligence.org/glossary/
+
+# The words behind shared context
+
+Plain-language definitions of the NGSI-LD terms you'll meet on this site and in the project repositories, plus the handful of words Antares uses in its own way. Terms marked Antares describe these projects; the rest come from the standard and its ecosystem.
+
+### @context
+
+The JSON-LD document that maps the short names in an NGSI-LD payload, such as `temperature`, to full, unambiguous URIs. Two organizations can use different words for the same thing and still mean the same thing, because the `@context` says what each word points to.
+
+Versioning the `@context` is how organizations agree on a vocabulary. In the Antares scenarios, a new version is a new approval, never a silent change to what gets shared.
+
+See also [JSON-LD](https://antares-intelligence.org/glossary/#json-ld), [Antares-Atrium](https://antares-intelligence.org/glossary/#antares-atrium).
+
+### Antares-Atrium (Antares)
+
+The governance layer of the Antares family. Atrium controls what each partner may share and receive, approves the vocabulary version in use, and lets subscribers replay what they missed. It's in design and has not been released.
+
+Repository: [antares-intelligence-org/antares-atrium](https://github.com/antares-intelligence-org/antares-atrium).
+
+### Antares-LD (Antares)
+
+An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses [Scorpio](https://antares-intelligence.org/glossary/#scorpio) as its behavioral reference. It's a working prototype with no release yet.
+
+Repository: [antares-intelligence-org/antares-ld](https://github.com/antares-intelligence-org/antares-ld).
+
+### Antares-Stinger (Antares)
+
+The interface translator of the Antares family. Stinger translates approved data between source systems and NGSI-LD, so it can link an ERP, an existing IoT gateway, or a partner system, and it holds updates locally when the network goes down. It's in design and has not been released.
+
+Repository: [antares-intelligence-org/antares-stinger](https://github.com/antares-intelligence-org/antares-stinger).
+
+### Apache License 2.0
+
+The permissive open-source license the Antares Intelligence projects use. You can use, change, and redistribute the code, including commercially. It doesn't grant the right to use the Antares Intelligence name or logo as your own brand.
+
+### Context broker
+
+A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. [Antares-LD](https://antares-intelligence.org/glossary/#antares-ld), [Scorpio](https://antares-intelligence.org/glossary/#scorpio), Orion-LD, and Stellio are context brokers.
+
+### Context information
+
+What is known about things in the world (a parking space, a pallet, a room, a sample), their properties, and how they relate to each other, both right now and over time.
+
+### Context source
+
+Any system that provides context information to a broker, either by sending updates or by registering with the broker so it can be asked on demand.
+
+### Edge
+
+The places where data is produced, close to devices, machines, and people. Networks at the edge are often slow or drop out, so software there has to hold data safely until it can be delivered.
+
+### Entity
+
+The basic unit of NGSI-LD: a thing with an identifier and a type, described by [properties](https://antares-intelligence.org/glossary/#property) and linked to other entities by [relationships](https://antares-intelligence.org/glossary/#relationship). A parking space, a shipment, and a hospital room can each be an entity.
+
+### ETSI ISG CIM
+
+The ETSI Industry Specification Group for cross-cutting Context Information Management. It publishes and maintains the NGSI-LD specifications, including the API specification, GS CIM 009.
+
+### Federation
+
+Brokers in different organizations answering requests together while each keeps its own data. Nobody hands their records to a central database. Each side shares only what it has approved, and in the Antares scenarios every exchange carries a [receipt](https://antares-intelligence.org/glossary/#receipt).
+
+### FIWARE
+
+An open-source ecosystem, stewarded by the FIWARE Foundation, whose components share context through the NGSI-LD API. Several context brokers, including Scorpio and Orion-LD, are FIWARE components. The Antares projects implement the same standard but are not official FIWARE components.
+
+### GeoProperty
+
+A special NGSI-LD property that holds a location as GeoJSON, so a broker can answer questions like "which entities are within 500 meters of this point."
+
+### JSON-LD
+
+A W3C standard for writing linked data in ordinary JSON. Every NGSI-LD payload is JSON-LD, which is what lets an [@context](https://antares-intelligence.org/glossary/#context) give each field a precise meaning.
+
+### NGSI-LD
+
+An open standard from ETSI for describing things, their relationships, and how they change over time. It defines an information model built on [entities](https://antares-intelligence.org/glossary/#entity), [properties](https://antares-intelligence.org/glossary/#property), and [relationships](https://antares-intelligence.org/glossary/#relationship), and an HTTP API for creating, querying, and subscribing to that information. Smart cities, agriculture, energy, manufacturing, and health all use it.
+
+### Notification
+
+The message a broker sends to a subscriber when context it [subscribed](https://antares-intelligence.org/glossary/#subscription) to changes.
+
+### Property
+
+A named value that describes an entity, such as a temperature reading or a status. A property can record when it was observed, which is what makes history possible.
+
+### Provenance
+
+The record of where a piece of information came from and what happened to it on the way. It's how someone later answers "what did we know, and when did we know it."
+
+### Receipt (Antares)
+
+In the Antares scenarios, the record that travels with shared information. Every receipt answers the same four questions: the source, what was observed or approved, who authorized it, and when. The signal and its receipt cross the boundary; the underlying record stays where it belongs.
+
+### Relationship
+
+A link from one NGSI-LD entity to another, such as a sample that belongs to a batch, or a sensor that sits in a room.
+
+### Replay
+
+Delivering the changes a downstream system missed while it was offline, in order and without duplicate effects, so every accepted change can be accounted for after it comes back.
+
+### Scorpio
+
+An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. [Antares-LD](https://antares-intelligence.org/glossary/#antares-ld) uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.
+
+### Smart Data Models
+
+An open, collaborative library of shared data models for NGSI-LD and other formats, covering domains from cities and energy to agriculture and manufacturing. Using a shared model means two organizations describe the same kind of thing the same way.
+
+### SQLite
+
+An embedded database that lives in a single file. Antares-LD uses it as its working storage path, which is why the broker needs no separate database server.
+
+### Subscription
+
+A standing request to a broker to be [notified](https://antares-intelligence.org/glossary/#notification) when matching context changes. Subscriptions are how one system reacts to another without polling.
+
+### Synthetic data
+
+Made-up data that has the shape of real records but describes no real person or customer. Every Antares example, test, and demonstration uses it.
+
+### Temporal API
+
+The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares-LD, the SQLite store serves the temporal API.
+
+Missing a term? Open an issue on [GitHub](https://github.com/antares-intelligence-org/antares-intelligence/issues). This glossary is also available as [plain Markdown](https://antares-intelligence.org/glossary.md).
+
+---
+
+Source: https://antares-intelligence.org/faq/
+
+# Straight answers, including the ones about what isn't ready
+
+What the projects do, what you can run today, how Antares-LD relates to Scorpio, and how to get involved. When something is a plan rather than a shipped capability, the answer says so.
+
+## About Antares Intelligence
+
+### What is Antares Intelligence?
+
+Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is a context broker that keeps current state and history. Antares-Atrium governs what each partner may share and receive. Antares-Stinger translates approved data between existing systems and NGSI-LD. Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.
+
+### Who builds it?
+
+The projects are built and sponsored by Scientix.ai Inc. None of them depends on a Scientix.ai account or service, and each one builds, tests, and runs without any private dependency.
+
+### Is Antares only for healthcare or clinical research?
+
+No. The projects are domain-neutral and work for any NGSI-LD use: cities, agriculture, energy, supply chain, manufacturing, finance, and health. The idea started from comparing smart-city operations with clinical research, which is why some of the examples come from health, but the homepage scenarios cover five industries.
+
+### Is it free and open source?
+
+Yes. The projects are licensed under the Apache License 2.0, so you can use, change, and redistribute them, including commercially. The license doesn't grant permission to use the Antares Intelligence name or logo as your own brand; you may use them to refer to these projects.
+
+## Antares-LD
+
+### Is Antares-LD ready for production?
+
+No. Antares-LD is a working prototype with no release yet. There is no released version number and no published binaries, and no platform is listed as supported until it has been verified.
+
+### How is Antares-LD different from Scorpio?
+
+Antares-LD is written in Rust and runs as a single binary with no database server, where Scorpio runs alongside a PostgreSQL database. Antares-LD uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison showing where the two brokers agree, where they differ, and which cases were not run. Where Scorpio departs from the NGSI-LD specification, Antares-LD documents the spec-correct behavior instead of copying the difference.
+
+### Can Antares-LD replace Scorpio?
+
+That's the decision the project is built to support, and it isn't one to make yet. The goal is that an engineer running Scorpio can install a verified build, run it against their own workflow, and decide from published evidence. Until there is a release and its comparison evidence, the honest answer is not yet.
+
+### Does Antares-LD conform to the NGSI-LD specification?
+
+The project keeps three kinds of claims separate: conformance to the NGSI-LD specification, observed compatibility with Scorpio, and measured performance. No conformance score is published yet. When one is, it will name the exact build, test suite, storage backend, and caveats, and it will show missing and unrun cases rather than hide them.
+
+### What storage does Antares-LD use?
+
+SQLite is the working storage path, and it serves the temporal API, so you can ask how an entity changed over time. An in-memory store exists for exploration and does not keep temporal history. PostgreSQL and PostGIS are not verified and are not supported today.
+
+### What address does Antares-LD listen on?
+
+By default the prototype listens on `0.0.0.0:1026`, the same default port the Orion and Orion-LD brokers use. Set the `ANTARES_BIND` environment variable to change it.
+
+## Atrium and Stinger
+
+### Can I use Antares-Atrium or Antares-Stinger today?
+
+Not yet. Both are in design and have not been released. The homepage scenarios show how they are designed to work, not features you can run today.
+
+### What will Antares-Atrium do?
+
+Atrium is the governance layer. It controls what each partner may share and receive, approves the vocabulary version (the JSON-LD @context) in use, and lets subscribers replay the changes they missed while offline.
+
+### What will Antares-Stinger do?
+
+Stinger is the interface translator. It translates approved data between source systems and NGSI-LD, so it can link an ERP, an existing IoT gateway, or a partner system, and it holds updates locally when the network goes down. The design goal is that existing systems keep working as they are, with no equipment replacement.
+
+### Do I need all three projects?
+
+No. Each project stands on its own. None requires another Antares component, a vendor account, or a private dependency to build, test, or run. You can use Antares-LD by itself as an NGSI-LD broker.
+
+## Sharing and data
+
+### What is a receipt?
+
+A receipt is the record that travels with shared information. Every receipt answers four questions: the source, what was observed or approved, who authorized it, and when. Sharing the signal with its receipt lets a partner act on it and audit it later, without ever seeing the record it came from.
+
+### How do two organizations with different vocabularies share data?
+
+They agree on a versioned JSON-LD @context, which maps each organization's terms to shared meanings. Each side keeps its own identifiers and field names inside its boundary and maps only approved information on the way out. A new @context version is a new approval, never a silent change to what gets sent.
+
+### Does my data go to Scientix.ai or a central database?
+
+No. You run the software, and each organization keeps its own records in its own broker. None of the projects depends on a Scientix.ai account or service, and the design has no central database that everyone feeds.
+
+### Do the projects work with FIWARE?
+
+Antares-LD implements the NGSI-LD API, the same standard FIWARE context brokers use, and it can use shared data models such as Smart Data Models. The Antares projects are not official FIWARE components.
+
+## Getting involved
+
+### How can I contribute?
+
+Issues and pull requests are welcome on [GitHub](https://github.com/antares-intelligence-org). Please use synthetic data in every example, test, and bug report, and never real personal or customer records. The [contributing guide](https://github.com/antares-intelligence-org/antares-intelligence/blob/main/CONTRIBUTING.md) covers the ground rules.
+
+### How do I follow progress?
+
+Watch the repositories in the [antares-intelligence-org](https://github.com/antares-intelligence-org) GitHub organization. Releases, comparison evidence, and status changes will appear there first.
+
+### Can AI agents read this site?
+
+Yes, and they're welcome to. The site publishes [llms.txt](https://antares-intelligence.org/llms.txt), a plain Markdown copy of every page, and a single [llms-full.txt](https://antares-intelligence.org/llms-full.txt) with the whole site in one file. The scenario boards on the homepage each have a full text transcript.
+
+Have a question that isn't here? Open an issue on [GitHub](https://github.com/antares-intelligence-org/antares-intelligence/issues). This FAQ is also available as [plain Markdown](https://antares-intelligence.org/faq.md).

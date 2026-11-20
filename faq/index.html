@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>FAQ: Antares-LD, Scorpio, NGSI-LD status and license | Antares Intelligence</title>
+<meta name="description" content="Straight answers about Antares Intelligence: what Antares-LD, Atrium, and Stinger do, how Antares-LD compares with Scorpio, what is released today, and how to contribute.">
+<link rel="canonical" href="https://antares-intelligence.org/faq/">
+<link rel="alternate" type="text/markdown" href="https://antares-intelligence.org/faq.md" title="FAQ as Markdown">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Antares Intelligence">
+<meta property="og:url" content="https://antares-intelligence.org/faq/">
+<meta property="og:title" content="FAQ | Antares Intelligence">
+<meta property="og:description" content="Straight answers about Antares Intelligence: what Antares-LD, Atrium, and Stinger do, how Antares-LD compares with Scorpio, what is released today, and how to contribute.">
+<meta property="og:image" content="https://antares-intelligence.org/assets/og-antares-intelligence.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Antares Intelligence logo beside the headline: Millions of things tell us what's happening, how do we link what they tell us?">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/antares-mark-dark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<!-- FAQPage structured data is generated from the questions below by build_agent_files.py. Do not edit it by hand. -->
+<script type="application/ld+json" id="faq-jsonld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://antares-intelligence.org/faq/#faq",
+  "url": "https://antares-intelligence.org/faq/",
+  "inLanguage": "en",
+  "publisher": {
+    "@id": "https://antares-intelligence.org/#organization"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Antares Intelligence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is a context broker that keeps current state and history. Antares-Atrium governs what each partner may share and receive. Antares-Stinger translates approved data between existing systems and NGSI-LD. Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who builds it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The projects are built and sponsored by Scientix.ai Inc. None of them depends on a Scientix.ai account or service, and each one builds, tests, and runs without any private dependency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Antares only for healthcare or clinical research?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The projects are domain-neutral and work for any NGSI-LD use: cities, agriculture, energy, supply chain, manufacturing, finance, and health. The idea started from comparing smart-city operations with clinical research, which is why some of the examples come from health, but the homepage scenarios cover five industries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free and open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The projects are licensed under the Apache License 2.0, so you can use, change, and redistribute them, including commercially. The license doesn't grant permission to use the Antares Intelligence name or logo as your own brand; you may use them to refer to these projects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Antares-LD ready for production?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Antares-LD is a working prototype with no release yet. There is no released version number and no published binaries, and no platform is listed as supported until it has been verified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Antares-LD different from Scorpio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antares-LD is written in Rust and runs as a single binary with no database server, where Scorpio runs alongside a PostgreSQL database. Antares-LD uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison showing where the two brokers agree, where they differ, and which cases were not run. Where Scorpio departs from the NGSI-LD specification, Antares-LD documents the spec-correct behavior instead of copying the difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Antares-LD replace Scorpio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's the decision the project is built to support, and it isn't one to make yet. The goal is that an engineer running Scorpio can install a verified build, run it against their own workflow, and decide from published evidence. Until there is a release and its comparison evidence, the honest answer is not yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Antares-LD conform to the NGSI-LD specification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The project keeps three kinds of claims separate: conformance to the NGSI-LD specification, observed compatibility with Scorpio, and measured performance. No conformance score is published yet. When one is, it will name the exact build, test suite, storage backend, and caveats, and it will show missing and unrun cases rather than hide them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What storage does Antares-LD use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQLite is the working storage path, and it serves the temporal API, so you can ask how an entity changed over time. An in-memory store exists for exploration and does not keep temporal history. PostgreSQL and PostGIS are not verified and are not supported today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What address does Antares-LD listen on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By default the prototype listens on 0.0.0.0:1026, the same default port the Orion and Orion-LD brokers use. Set the ANTARES_BIND environment variable to change it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Antares-Atrium or Antares-Stinger today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. Both are in design and have not been released. The homepage scenarios show how they are designed to work, not features you can run today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What will Antares-Atrium do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Atrium is the governance layer. It controls what each partner may share and receive, approves the vocabulary version (the JSON-LD @context) in use, and lets subscribers replay the changes they missed while offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What will Antares-Stinger do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stinger is the interface translator. It translates approved data between source systems and NGSI-LD, so it can link an ERP, an existing IoT gateway, or a partner system, and it holds updates locally when the network goes down. The design goal is that existing systems keep working as they are, with no equipment replacement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need all three projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Each project stands on its own. None requires another Antares component, a vendor account, or a private dependency to build, test, or run. You can use Antares-LD by itself as an NGSI-LD broker."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a receipt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A receipt is the record that travels with shared information. Every receipt answers four questions: the source, what was observed or approved, who authorized it, and when. Sharing the signal with its receipt lets a partner act on it and audit it later, without ever seeing the record it came from."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do two organizations with different vocabularies share data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They agree on a versioned JSON-LD @context, which maps each organization's terms to shared meanings. Each side keeps its own identifiers and field names inside its boundary and maps only approved information on the way out. A new @context version is a new approval, never a silent change to what gets sent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my data go to Scientix.ai or a central database?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You run the software, and each organization keeps its own records in its own broker. None of the projects depends on a Scientix.ai account or service, and the design has no central database that everyone feeds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do the projects work with FIWARE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antares-LD implements the NGSI-LD API, the same standard FIWARE context brokers use, and it can use shared data models such as Smart Data Models. The Antares projects are not official FIWARE components."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I contribute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Issues and pull requests are welcome on GitHub. Please use synthetic data in every example, test, and bug report, and never real personal or customer records. The contributing guide covers the ground rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I follow progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch the repositories in the antares-intelligence-org GitHub organization. Releases, comparison evidence, and status changes will appear there first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI agents read this site?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and they're welcome to. The site publishes llms.txt, a plain Markdown copy of every page, and a single llms-full.txt with the whole site in one file. The scenario boards on the homepage each have a full text transcript."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Antares Intelligence home">
+      <img src="../assets/antares-lockup-horizontal-dark.svg" alt="Antares Intelligence" width="177" height="56">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-optional" href="../#projects">Projects</a>
+      <a class="nav-optional" href="../#how-it-fits">How it fits</a>
+      <a href="../glossary/">Glossary</a>
+      <a href="./" aria-current="page">FAQ</a>
+      <a href="https://github.com/antares-intelligence-org">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="page-head wrap">
+    <h1>Straight answers, including the ones about what isn't ready</h1>
+    <p class="lede">What the projects do, what you can run today, how Antares-LD relates to Scorpio, and how to get involved. When something is a plan rather than a shipped capability, the answer says so.</p>
+  </header>
+
+  <div class="page-body wrap">
+    <section class="faq-group" aria-labelledby="g-about">
+      <h2 id="g-about">About Antares Intelligence</h2>
+
+      <div class="qa" id="what-is-antares">
+        <h3>What is Antares Intelligence?</h3>
+        <div class="answer">
+          <p>Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is a context broker that keeps current state and history. Antares-Atrium governs what each partner may share and receive. Antares-Stinger translates approved data between existing systems and NGSI-LD. Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="who-builds-it">
+        <h3>Who builds it?</h3>
+        <div class="answer">
+          <p>The projects are built and sponsored by Scientix.ai Inc. None of them depends on a Scientix.ai account or service, and each one builds, tests, and runs without any private dependency.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="industries">
+        <h3>Is Antares only for healthcare or clinical research?</h3>
+        <div class="answer">
+          <p>No. The projects are domain-neutral and work for any NGSI-LD use: cities, agriculture, energy, supply chain, manufacturing, finance, and health. The idea started from comparing smart-city operations with clinical research, which is why some of the examples come from health, but the homepage scenarios cover five industries.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="license">
+        <h3>Is it free and open source?</h3>
+        <div class="answer">
+          <p>Yes. The projects are licensed under the Apache License 2.0, so you can use, change, and redistribute them, including commercially. The license doesn't grant permission to use the Antares Intelligence name or logo as your own brand; you may use them to refer to these projects.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-group" aria-labelledby="g-ld">
+      <h2 id="g-ld">Antares-LD</h2>
+
+      <div class="qa" id="ld-ready">
+        <h3>Is Antares-LD ready for production?</h3>
+        <div class="answer">
+          <p>No. Antares-LD is a working prototype with no release yet. There is no released version number and no published binaries, and no platform is listed as supported until it has been verified.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="ld-vs-scorpio">
+        <h3>How is Antares-LD different from Scorpio?</h3>
+        <div class="answer">
+          <p>Antares-LD is written in Rust and runs as a single binary with no database server, where Scorpio runs alongside a PostgreSQL database. Antares-LD uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison showing where the two brokers agree, where they differ, and which cases were not run. Where Scorpio departs from the NGSI-LD specification, Antares-LD documents the spec-correct behavior instead of copying the difference.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="ld-replace-scorpio">
+        <h3>Can Antares-LD replace Scorpio?</h3>
+        <div class="answer">
+          <p>That's the decision the project is built to support, and it isn't one to make yet. The goal is that an engineer running Scorpio can install a verified build, run it against their own workflow, and decide from published evidence. Until there is a release and its comparison evidence, the honest answer is not yet.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="ld-conformance">
+        <h3>Does Antares-LD conform to the NGSI-LD specification?</h3>
+        <div class="answer">
+          <p>The project keeps three kinds of claims separate: conformance to the NGSI-LD specification, observed compatibility with Scorpio, and measured performance. No conformance score is published yet. When one is, it will name the exact build, test suite, storage backend, and caveats, and it will show missing and unrun cases rather than hide them.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="ld-storage">
+        <h3>What storage does Antares-LD use?</h3>
+        <div class="answer">
+          <p>SQLite is the working storage path, and it serves the temporal API, so you can ask how an entity changed over time. An in-memory store exists for exploration and does not keep temporal history. PostgreSQL and PostGIS are not verified and are not supported today.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="ld-port">
+        <h3>What address does Antares-LD listen on?</h3>
+        <div class="answer">
+          <p>By default the prototype listens on <code>0.0.0.0:1026</code>, the same default port the Orion and Orion-LD brokers use. Set the <code>ANTARES_BIND</code> environment variable to change it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-group" aria-labelledby="g-family">
+      <h2 id="g-family">Atrium and Stinger</h2>
+
+      <div class="qa" id="atrium-stinger-status">
+        <h3>Can I use Antares-Atrium or Antares-Stinger today?</h3>
+        <div class="answer">
+          <p>Not yet. Both are in design and have not been released. The homepage scenarios show how they are designed to work, not features you can run today.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="atrium">
+        <h3>What will Antares-Atrium do?</h3>
+        <div class="answer">
+          <p>Atrium is the governance layer. It controls what each partner may share and receive, approves the vocabulary version (the JSON-LD @context) in use, and lets subscribers replay the changes they missed while offline.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="stinger">
+        <h3>What will Antares-Stinger do?</h3>
+        <div class="answer">
+          <p>Stinger is the interface translator. It translates approved data between source systems and NGSI-LD, so it can link an ERP, an existing IoT gateway, or a partner system, and it holds updates locally when the network goes down. The design goal is that existing systems keep working as they are, with no equipment replacement.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="need-all-three">
+        <h3>Do I need all three projects?</h3>
+        <div class="answer">
+          <p>No. Each project stands on its own. None requires another Antares component, a vendor account, or a private dependency to build, test, or run. You can use Antares-LD by itself as an NGSI-LD broker.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-group" aria-labelledby="g-sharing">
+      <h2 id="g-sharing">Sharing and data</h2>
+
+      <div class="qa" id="receipt">
+        <h3>What is a receipt?</h3>
+        <div class="answer">
+          <p>A receipt is the record that travels with shared information. Every receipt answers four questions: the source, what was observed or approved, who authorized it, and when. Sharing the signal with its receipt lets a partner act on it and audit it later, without ever seeing the record it came from.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="vocabularies">
+        <h3>How do two organizations with different vocabularies share data?</h3>
+        <div class="answer">
+          <p>They agree on a versioned JSON-LD @context, which maps each organization's terms to shared meanings. Each side keeps its own identifiers and field names inside its boundary and maps only approved information on the way out. A new @context version is a new approval, never a silent change to what gets sent.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="data-location">
+        <h3>Does my data go to Scientix.ai or a central database?</h3>
+        <div class="answer">
+          <p>No. You run the software, and each organization keeps its own records in its own broker. None of the projects depends on a Scientix.ai account or service, and the design has no central database that everyone feeds.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="fiware">
+        <h3>Do the projects work with FIWARE?</h3>
+        <div class="answer">
+          <p>Antares-LD implements the NGSI-LD API, the same standard FIWARE context brokers use, and it can use shared data models such as Smart Data Models. The Antares projects are not official FIWARE components.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-group" aria-labelledby="g-involved">
+      <h2 id="g-involved">Getting involved</h2>
+
+      <div class="qa" id="contribute">
+        <h3>How can I contribute?</h3>
+        <div class="answer">
+          <p>Issues and pull requests are welcome on <a href="https://github.com/antares-intelligence-org">GitHub</a>. Please use synthetic data in every example, test, and bug report, and never real personal or customer records. The <a href="https://github.com/antares-intelligence-org/antares-intelligence/blob/main/CONTRIBUTING.md">contributing guide</a> covers the ground rules.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="follow">
+        <h3>How do I follow progress?</h3>
+        <div class="answer">
+          <p>Watch the repositories in the <a href="https://github.com/antares-intelligence-org">antares-intelligence-org</a> GitHub organization. Releases, comparison evidence, and status changes will appear there first.</p>
+        </div>
+      </div>
+
+      <div class="qa" id="agents">
+        <h3>Can AI agents read this site?</h3>
+        <div class="answer">
+          <p>Yes, and they're welcome to. The site publishes <a href="../llms.txt">llms.txt</a>, a plain Markdown copy of every page, and a single <a href="../llms-full.txt">llms-full.txt</a> with the whole site in one file. The scenario boards on the homepage each have a full text transcript.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="page-foot">Have a question that isn't here? Open an issue on <a href="https://github.com/antares-intelligence-org/antares-intelligence/issues">GitHub</a>. This FAQ is also available as <a href="../faq.md">plain Markdown</a>.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img src="../assets/antares-lockup-horizontal-dark.svg" alt="Antares Intelligence" width="152" height="48">
+    <div class="footer-text">
+      <p>Built and sponsored by <a href="https://scientixai.com">Scientix.ai</a>. None of the projects depends on a Scientix.ai account or service.</p>
+      <div class="footer-links">
+        <a href="../glossary/">Glossary</a>
+        <a href="./">FAQ</a>
+        <a href="https://github.com/antares-intelligence-org">GitHub organization</a>
+        <a href="https://github.com/antares-intelligence-org/antares-intelligence/blob/main/LICENSE">Apache-2.0 license</a>
+        <a href="https://github.com/antares-intelligence-org/antares-intelligence/blob/main/CONTRIBUTING.md">Contributing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

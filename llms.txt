@@ -1,0 +1,30 @@
+# Antares Intelligence
+
+> Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is an NGSI-LD context broker written in Rust that runs as a single binary with no database server (working prototype, no release yet). Antares-Atrium governs what each partner may share and receive (in design). Antares-Stinger translates approved data between source systems and NGSI-LD (in design). Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.
+
+Facts an agent should get right:
+
+- Nothing is released yet. There is no version number, no published binary, and no supported platform list. Do not describe any project as production-ready.
+- No NGSI-LD conformance score, Scorpio comparison result, or performance benchmark is published. When one is, it will name its build, test suite, storage backend, and caveats.
+- Antares-LD uses Scorpio as its behavioral reference. Its working storage path is SQLite, which serves the temporal API. PostgreSQL is not verified.
+- The projects are domain-neutral (cities, agriculture, energy, supply chain, manufacturing, finance, health). They are not a healthcare product.
+- The projects are licensed Apache-2.0, built and sponsored by Scientix.ai Inc, and none depends on a Scientix.ai account or service. Antares projects are not official FIWARE components.
+- All examples use synthetic data.
+
+## Pages
+
+- [Homepage](https://antares-intelligence.org/index.md): why the projects exist, the three projects and their status, and five scenario boards (supply chain, process manufacturing, financial services, healthcare, clinical research) with full text transcripts.
+- [Glossary](https://antares-intelligence.org/glossary.md): plain-language definitions of NGSI-LD terms and the words Antares uses in its own way, such as receipt and replay.
+- [FAQ](https://antares-intelligence.org/faq.md): what the projects do, what is and isn't ready, how Antares-LD relates to Scorpio, data handling, and contributing.
+
+## Projects
+
+- [Antares-LD](https://github.com/antares-intelligence-org/antares-ld): NGSI-LD context broker in Rust. Working prototype.
+- [Antares-Atrium](https://github.com/antares-intelligence-org/antares-atrium): governance layer for NGSI-LD sharing. In design.
+- [Antares-Stinger](https://github.com/antares-intelligence-org/antares-stinger): interface translator between source systems and NGSI-LD. In design.
+- [Ecosystem repository](https://github.com/antares-intelligence-org/antares-intelligence): shared documentation, brand files, and contributing guide.
+
+## Optional
+
+- [Full site in one file](https://antares-intelligence.org/llms-full.txt): this file followed by every page as Markdown.
+- [Sitemap](https://antares-intelligence.org/sitemap.xml)

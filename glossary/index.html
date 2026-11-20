@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>NGSI-LD glossary: context brokers, entities, and receipts | Antares Intelligence</title>
+<meta name="description" content="Plain-language definitions of NGSI-LD, context brokers, JSON-LD @context, temporal history, federation, and the terms the Antares Intelligence projects use.">
+<link rel="canonical" href="https://antares-intelligence.org/glossary/">
+<link rel="alternate" type="text/markdown" href="https://antares-intelligence.org/glossary.md" title="Glossary as Markdown">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Antares Intelligence">
+<meta property="og:url" content="https://antares-intelligence.org/glossary/">
+<meta property="og:title" content="NGSI-LD glossary | Antares Intelligence">
+<meta property="og:description" content="Plain-language definitions of NGSI-LD, context brokers, JSON-LD @context, temporal history, federation, and the terms the Antares Intelligence projects use.">
+<meta property="og:image" content="https://antares-intelligence.org/assets/og-antares-intelligence.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Antares Intelligence logo beside the headline: Millions of things tell us what's happening, how do we link what they tell us?">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/antares-mark-dark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://antares-intelligence.org/glossary/#terms",
+  "name": "Antares Intelligence glossary",
+  "url": "https://antares-intelligence.org/glossary/",
+  "inLanguage": "en",
+  "publisher": { "@id": "https://antares-intelligence.org/#organization" },
+  "hasDefinedTerm": [
+    { "@type": "DefinedTerm", "name": "@context", "url": "https://antares-intelligence.org/glossary/#context", "description": "The JSON-LD document that maps the short names in an NGSI-LD payload to full, unambiguous URIs. Versioning it is how two organizations agree on a vocabulary." },
+    { "@type": "DefinedTerm", "name": "Antares-Atrium", "url": "https://antares-intelligence.org/glossary/#antares-atrium", "description": "The Antares project that governs sharing: it controls what each partner may share and receive, approves the vocabulary version in use, and lets subscribers replay what they missed. In design." },
+    { "@type": "DefinedTerm", "name": "Antares-LD", "url": "https://antares-intelligence.org/glossary/#antares-ld", "description": "An open-source NGSI-LD context broker written in Rust that runs as a single binary with no database server and keeps current state and history. A working prototype with no release yet." },
+    { "@type": "DefinedTerm", "name": "Antares-Stinger", "url": "https://antares-intelligence.org/glossary/#antares-stinger", "description": "The Antares project that translates approved data between source systems and NGSI-LD, and holds updates locally when the network goes down. In design." },
+    { "@type": "DefinedTerm", "name": "Apache License 2.0", "url": "https://antares-intelligence.org/glossary/#apache-2", "description": "The permissive open-source license used by the Antares Intelligence projects." },
+    { "@type": "DefinedTerm", "name": "Context broker", "url": "https://antares-intelligence.org/glossary/#context-broker", "description": "A server that stores context information and serves it through the NGSI-LD API: queries for current state, temporal history, and subscriptions that notify other systems of changes." },
+    { "@type": "DefinedTerm", "name": "Context information", "url": "https://antares-intelligence.org/glossary/#context-information", "description": "What is known about things in the world, their properties, and their relationships, at a point in time and over time." },
+    { "@type": "DefinedTerm", "name": "Context source", "url": "https://antares-intelligence.org/glossary/#context-source", "description": "Any system that provides context information to a broker, either by sending updates or by registering so the broker can ask it on demand." },
+    { "@type": "DefinedTerm", "name": "Edge", "url": "https://antares-intelligence.org/glossary/#edge", "description": "The places where data is produced, close to devices and people, often on networks that are slow or intermittently offline." },
+    { "@type": "DefinedTerm", "name": "Entity", "url": "https://antares-intelligence.org/glossary/#entity", "description": "The basic unit of NGSI-LD: a thing with an identifier and a type, described by properties and linked to other entities by relationships." },
+    { "@type": "DefinedTerm", "name": "ETSI ISG CIM", "url": "https://antares-intelligence.org/glossary/#etsi-isg-cim", "description": "The ETSI Industry Specification Group for cross-cutting Context Information Management, which publishes and maintains the NGSI-LD specifications." },
+    { "@type": "DefinedTerm", "name": "Federation", "url": "https://antares-intelligence.org/glossary/#federation", "description": "Brokers in different organizations answering requests together while each keeps its own data, so no single party holds everything." },
+    { "@type": "DefinedTerm", "name": "FIWARE", "url": "https://antares-intelligence.org/glossary/#fiware", "description": "An open-source ecosystem, stewarded by the FIWARE Foundation, whose components share context through the NGSI-LD API." },
+    { "@type": "DefinedTerm", "name": "GeoProperty", "url": "https://antares-intelligence.org/glossary/#geoproperty", "description": "A special NGSI-LD property that holds a location as GeoJSON, so brokers can answer geographic queries." },
+    { "@type": "DefinedTerm", "name": "JSON-LD", "url": "https://antares-intelligence.org/glossary/#json-ld", "description": "A W3C standard for writing linked data in ordinary JSON. NGSI-LD payloads are JSON-LD." },
+    { "@type": "DefinedTerm", "name": "NGSI-LD", "url": "https://antares-intelligence.org/glossary/#ngsi-ld", "description": "An open standard from ETSI for describing things, their relationships, and how they change over time, with an API for querying, updating, and subscribing to that information." },
+    { "@type": "DefinedTerm", "name": "Notification", "url": "https://antares-intelligence.org/glossary/#notification", "description": "The message a broker sends to a subscriber when context it subscribed to changes." },
+    { "@type": "DefinedTerm", "name": "Property", "url": "https://antares-intelligence.org/glossary/#property", "description": "A named value that describes an entity, such as a temperature reading or a status, optionally with when it was observed." },
+    { "@type": "DefinedTerm", "name": "Provenance", "url": "https://antares-intelligence.org/glossary/#provenance", "description": "The record of where a piece of information came from and what happened to it on the way." },
+    { "@type": "DefinedTerm", "name": "Receipt", "url": "https://antares-intelligence.org/glossary/#receipt", "description": "In Antares, the record that travels with shared information: its source, what was observed or approved, who authorized it, and when." },
+    { "@type": "DefinedTerm", "name": "Relationship", "url": "https://antares-intelligence.org/glossary/#relationship", "description": "A link from one NGSI-LD entity to another, such as a sample that belongs to a batch." },
+    { "@type": "DefinedTerm", "name": "Replay", "url": "https://antares-intelligence.org/glossary/#replay", "description": "Delivering the changes a downstream system missed while it was offline, in order and without duplicate effects." },
+    { "@type": "DefinedTerm", "name": "Scorpio", "url": "https://antares-intelligence.org/glossary/#scorpio", "description": "An open-source NGSI-LD context broker in the FIWARE ecosystem that runs with a PostgreSQL database. Antares-LD uses it as a behavioral reference." },
+    { "@type": "DefinedTerm", "name": "Smart Data Models", "url": "https://antares-intelligence.org/glossary/#smart-data-models", "description": "An open, collaborative library of shared data models for NGSI-LD and other formats, covering domains from cities to energy to manufacturing." },
+    { "@type": "DefinedTerm", "name": "SQLite", "url": "https://antares-intelligence.org/glossary/#sqlite", "description": "An embedded database that lives in a single file. Antares-LD uses it so the broker needs no separate database server." },
+    { "@type": "DefinedTerm", "name": "Subscription", "url": "https://antares-intelligence.org/glossary/#subscription", "description": "A standing request to a broker to be notified when matching context changes." },
+    { "@type": "DefinedTerm", "name": "Synthetic data", "url": "https://antares-intelligence.org/glossary/#synthetic-data", "description": "Made-up data that has the shape of real records but describes no real person or customer. Every Antares example and test uses it." },
+    { "@type": "DefinedTerm", "name": "Temporal API", "url": "https://antares-intelligence.org/glossary/#temporal-api", "description": "The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state." }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Antares Intelligence home">
+      <img src="../assets/antares-lockup-horizontal-dark.svg" alt="Antares Intelligence" width="177" height="56">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-optional" href="../#projects">Projects</a>
+      <a class="nav-optional" href="../#how-it-fits">How it fits</a>
+      <a href="./" aria-current="page">Glossary</a>
+      <a href="../faq/">FAQ</a>
+      <a href="https://github.com/antares-intelligence-org">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="page-head wrap">
+    <h1>The words behind shared context</h1>
+    <p class="lede">Plain-language definitions of the NGSI-LD terms you'll meet on this site and in the project repositories, plus the handful of words Antares uses in its own way. Terms marked Antares describe these projects; the rest come from the standard and its ecosystem.</p>
+  </header>
+
+  <div class="page-body wrap">
+    <nav aria-label="Jump to a term">
+      <ul class="jump">
+        <li><a href="#context">@context</a></li>
+        <li><a href="#antares-atrium">Antares-Atrium</a></li>
+        <li><a href="#antares-ld">Antares-LD</a></li>
+        <li><a href="#antares-stinger">Antares-Stinger</a></li>
+        <li><a href="#apache-2">Apache-2.0</a></li>
+        <li><a href="#context-broker">Context broker</a></li>
+        <li><a href="#context-information">Context information</a></li>
+        <li><a href="#context-source">Context source</a></li>
+        <li><a href="#edge">Edge</a></li>
+        <li><a href="#entity">Entity</a></li>
+        <li><a href="#etsi-isg-cim">ETSI ISG CIM</a></li>
+        <li><a href="#federation">Federation</a></li>
+        <li><a href="#fiware">FIWARE</a></li>
+        <li><a href="#geoproperty">GeoProperty</a></li>
+        <li><a href="#json-ld">JSON-LD</a></li>
+        <li><a href="#ngsi-ld">NGSI-LD</a></li>
+        <li><a href="#notification">Notification</a></li>
+        <li><a href="#property">Property</a></li>
+        <li><a href="#provenance">Provenance</a></li>
+        <li><a href="#receipt">Receipt</a></li>
+        <li><a href="#relationship">Relationship</a></li>
+        <li><a href="#replay">Replay</a></li>
+        <li><a href="#scorpio">Scorpio</a></li>
+        <li><a href="#smart-data-models">Smart Data Models</a></li>
+        <li><a href="#sqlite">SQLite</a></li>
+        <li><a href="#subscription">Subscription</a></li>
+        <li><a href="#synthetic-data">Synthetic data</a></li>
+        <li><a href="#temporal-api">Temporal API</a></li>
+      </ul>
+    </nav>
+
+    <dl class="terms">
+      <div class="term" id="context">
+        <dt>@context</dt>
+        <dd>
+          <p>The JSON-LD document that maps the short names in an NGSI-LD payload, such as <code>temperature</code>, to full, unambiguous URIs. Two organizations can use different words for the same thing and still mean the same thing, because the <code>@context</code> says what each word points to.</p>
+          <p>Versioning the <code>@context</code> is how organizations agree on a vocabulary. In the Antares scenarios, a new version is a new approval, never a silent change to what gets shared.</p>
+          <p class="also">See also <a href="#json-ld">JSON-LD</a>, <a href="#antares-atrium">Antares-Atrium</a>.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="antares-atrium">
+        <dt>Antares-Atrium <span class="tag">Antares</span></dt>
+        <dd>
+          <p>The governance layer of the Antares family. Atrium controls what each partner may share and receive, approves the vocabulary version in use, and lets subscribers replay what they missed. It's in design and has not been released.</p>
+          <p class="also">Repository: <a href="https://github.com/antares-intelligence-org/antares-atrium">antares-intelligence-org/antares-atrium</a>.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="antares-ld">
+        <dt>Antares-LD <span class="tag">Antares</span></dt>
+        <dd>
+          <p>An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses <a href="#scorpio">Scorpio</a> as its behavioral reference. It's a working prototype with no release yet.</p>
+          <p class="also">Repository: <a href="https://github.com/antares-intelligence-org/antares-ld">antares-intelligence-org/antares-ld</a>.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="antares-stinger">
+        <dt>Antares-Stinger <span class="tag">Antares</span></dt>
+        <dd>
+          <p>The interface translator of the Antares family. Stinger translates approved data between source systems and NGSI-LD, so it can link an ERP, an existing IoT gateway, or a partner system, and it holds updates locally when the network goes down. It's in design and has not been released.</p>
+          <p class="also">Repository: <a href="https://github.com/antares-intelligence-org/antares-stinger">antares-intelligence-org/antares-stinger</a>.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="apache-2">
+        <dt>Apache License 2.0</dt>
+        <dd>
+          <p>The permissive open-source license the Antares Intelligence projects use. You can use, change, and redistribute the code, including commercially. It doesn't grant the right to use the Antares Intelligence name or logo as your own brand.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="context-broker">
+        <dt>Context broker</dt>
+        <dd>
+          <p>A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. <a href="#antares-ld">Antares-LD</a>, <a href="#scorpio">Scorpio</a>, Orion-LD, and Stellio are context brokers.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="context-information">
+        <dt>Context information</dt>
+        <dd>
+          <p>What is known about things in the world (a parking space, a pallet, a room, a sample), their properties, and how they relate to each other, both right now and over time.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="context-source">
+        <dt>Context source</dt>
+        <dd>
+          <p>Any system that provides context information to a broker, either by sending updates or by registering with the broker so it can be asked on demand.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="edge">
+        <dt>Edge</dt>
+        <dd>
+          <p>The places where data is produced, close to devices, machines, and people. Networks at the edge are often slow or drop out, so software there has to hold data safely until it can be delivered.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="entity">
+        <dt>Entity</dt>
+        <dd>
+          <p>The basic unit of NGSI-LD: a thing with an identifier and a type, described by <a href="#property">properties</a> and linked to other entities by <a href="#relationship">relationships</a>. A parking space, a shipment, and a hospital room can each be an entity.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="etsi-isg-cim">
+        <dt>ETSI ISG CIM</dt>
+        <dd>
+          <p>The ETSI Industry Specification Group for cross-cutting Context Information Management. It publishes and maintains the NGSI-LD specifications, including the API specification, GS CIM 009.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="federation">
+        <dt>Federation</dt>
+        <dd>
+          <p>Brokers in different organizations answering requests together while each keeps its own data. Nobody hands their records to a central database. Each side shares only what it has approved, and in the Antares scenarios every exchange carries a <a href="#receipt">receipt</a>.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="fiware">
+        <dt>FIWARE</dt>
+        <dd>
+          <p>An open-source ecosystem, stewarded by the FIWARE Foundation, whose components share context through the NGSI-LD API. Several context brokers, including Scorpio and Orion-LD, are FIWARE components. The Antares projects implement the same standard but are not official FIWARE components.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="geoproperty">
+        <dt>GeoProperty</dt>
+        <dd>
+          <p>A special NGSI-LD property that holds a location as GeoJSON, so a broker can answer questions like "which entities are within 500 meters of this point."</p>
+        </dd>
+      </div>
+
+      <div class="term" id="json-ld">
+        <dt>JSON-LD</dt>
+        <dd>
+          <p>A W3C standard for writing linked data in ordinary JSON. Every NGSI-LD payload is JSON-LD, which is what lets an <a href="#context">@context</a> give each field a precise meaning.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="ngsi-ld">
+        <dt>NGSI-LD</dt>
+        <dd>
+          <p>An open standard from ETSI for describing things, their relationships, and how they change over time. It defines an information model built on <a href="#entity">entities</a>, <a href="#property">properties</a>, and <a href="#relationship">relationships</a>, and an HTTP API for creating, querying, and subscribing to that information. Smart cities, agriculture, energy, manufacturing, and health all use it.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="notification">
+        <dt>Notification</dt>
+        <dd>
+          <p>The message a broker sends to a subscriber when context it <a href="#subscription">subscribed</a> to changes.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="property">
+        <dt>Property</dt>
+        <dd>
+          <p>A named value that describes an entity, such as a temperature reading or a status. A property can record when it was observed, which is what makes history possible.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="provenance">
+        <dt>Provenance</dt>
+        <dd>
+          <p>The record of where a piece of information came from and what happened to it on the way. It's how someone later answers "what did we know, and when did we know it."</p>
+        </dd>
+      </div>
+
+      <div class="term" id="receipt">
+        <dt>Receipt <span class="tag">Antares</span></dt>
+        <dd>
+          <p>In the Antares scenarios, the record that travels with shared information. Every receipt answers the same four questions: the source, what was observed or approved, who authorized it, and when. The signal and its receipt cross the boundary; the underlying record stays where it belongs.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="relationship">
+        <dt>Relationship</dt>
+        <dd>
+          <p>A link from one NGSI-LD entity to another, such as a sample that belongs to a batch, or a sensor that sits in a room.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="replay">
+        <dt>Replay</dt>
+        <dd>
+          <p>Delivering the changes a downstream system missed while it was offline, in order and without duplicate effects, so every accepted change can be accounted for after it comes back.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="scorpio">
+        <dt>Scorpio</dt>
+        <dd>
+          <p>An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. <a href="#antares-ld">Antares-LD</a> uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="smart-data-models">
+        <dt>Smart Data Models</dt>
+        <dd>
+          <p>An open, collaborative library of shared data models for NGSI-LD and other formats, covering domains from cities and energy to agriculture and manufacturing. Using a shared model means two organizations describe the same kind of thing the same way.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="sqlite">
+        <dt>SQLite</dt>
+        <dd>
+          <p>An embedded database that lives in a single file. Antares-LD uses it as its working storage path, which is why the broker needs no separate database server.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="subscription">
+        <dt>Subscription</dt>
+        <dd>
+          <p>A standing request to a broker to be <a href="#notification">notified</a> when matching context changes. Subscriptions are how one system reacts to another without polling.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="synthetic-data">
+        <dt>Synthetic data</dt>
+        <dd>
+          <p>Made-up data that has the shape of real records but describes no real person or customer. Every Antares example, test, and demonstration uses it.</p>
+        </dd>
+      </div>
+
+      <div class="term" id="temporal-api">
+        <dt>Temporal API</dt>
+        <dd>
+          <p>The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares-LD, the SQLite store serves the temporal API.</p>
+        </dd>
+      </div>
+    </dl>
+
+    <p class="page-foot">Missing a term? Open an issue on <a href="https://github.com/antares-intelligence-org/antares-intelligence/issues">GitHub</a>. This glossary is also available as <a href="../glossary.md">plain Markdown</a>.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <img src="../assets/antares-lockup-horizontal-dark.svg" alt="Antares Intelligence" width="152" height="48">
+    <div class="footer-text">
+      <p>Built and sponsored by <a href="https://scientixai.com">Scientix.ai</a>. None of the projects depends on a Scientix.ai account or service.</p>
+      <div class="footer-links">
+        <a href="./">Glossary</a>
+        <a href="../faq/">FAQ</a>
+        <a href="https://github.com/antares-intelligence-org">GitHub organization</a>
+        <a href="https://github.com/antares-intelligence-org/antares-intelligence/blob/main/LICENSE">Apache-2.0 license</a>
+        <a href="https://github.com/antares-intelligence-org/antares-intelligence/blob/main/CONTRIBUTING.md">Contributing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
