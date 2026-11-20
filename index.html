@@ -263,6 +263,78 @@ p { margin: 0; text-wrap: pretty; }
 .badge svg { width: 10px; height: 10px; flex: none; }
 .badge--progress { color: var(--secondary-ink); border-color: color-mix(in srgb, var(--secondary-ink) 45%, transparent); background: var(--secondary-tint); }
 
+/* ---------- How the pieces fit ---------- */
+.fit { padding-bottom: var(--section); }
+.fit-intro { display: grid; gap: 14px; max-width: var(--measure); }
+.fit-intro p { font-size: 1.125rem; }
+.fit-intro .fit-note { font-size: 0.9375rem; color: var(--text-muted); }
+.tabs { margin-top: 40px; }
+.tablist { display: none; }
+.js .tablist {
+  display: flex; gap: 4px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.js .tablist::-webkit-scrollbar { display: none; }
+.tab {
+  appearance: none; background: none; border: 0; border-radius: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 12px 16px 13px;
+  font: 500 1rem/1.2 var(--font-sans);
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.tab:first-child { padding-left: 0; }
+.tab:hover { color: var(--text-strong); }
+.tab[aria-selected="true"] { color: var(--text-strong); font-weight: 600; border-bottom-color: var(--accent); }
+.tab:focus-visible { outline-offset: -2px; }
+.panel { padding-top: 32px; }
+.panel + .panel { margin-top: 56px; }
+.js .panel + .panel { margin-top: 0; }
+.panel:focus-visible { outline-offset: 6px; }
+.board {
+  margin: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+.board img { width: 100%; height: auto; }
+.panel-body {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  column-gap: 32px;
+  row-gap: 16px;
+  margin-top: 28px;
+}
+.panel-meta { display: grid; gap: 10px; align-content: start; }
+.kicker {
+  font: 600 0.75rem/1.3 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary-ink);
+}
+.fullsize { font-size: 0.9375rem; color: var(--text); text-decoration-color: var(--border); }
+.panel-text { max-width: var(--measure); }
+.caption { font-size: 1.125rem; }
+code { font: 500 0.9em/1 var(--font-mono); color: var(--text-strong); }
+.transcript { margin-top: 20px; border-top: 1px solid var(--border-subtle); }
+.transcript summary {
+  padding-block: 14px;
+  font: 500 0.9375rem/1.3 var(--font-sans);
+  color: var(--text);
+  cursor: pointer;
+}
+.transcript summary:hover { color: var(--text-strong); }
+.transcript-body { display: grid; gap: 0.9em; padding-bottom: 8px; }
+.transcript-body p { font-size: 1rem; line-height: 1.6; }
+.transcript-body strong { color: var(--text-strong); font-weight: 600; }
+
 /* ---------- Footer ---------- */
 .footer { background: #11131b; color: var(--text-body); padding-block: 56px 64px; }
 .footer .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 32px; row-gap: 24px; }
@@ -284,7 +356,10 @@ p { margin: 0; text-wrap: pretty; }
   .sky-photo { object-position: 68% 50%; }
   .line-2 { justify-self: start; text-align: left; }
   .credit { justify-self: start; }
-  .chapter, .projects-head, .footer .wrap { grid-template-columns: minmax(0, 1fr); }
+  .chapter, .projects-head, .panel-body, .footer .wrap { grid-template-columns: minmax(0, 1fr); }
+  .panel { padding-top: 20px; }
+  .panel-body { margin-top: 20px; }
+  .tab { padding-inline: 12px; }
   .chapter { padding-block: 36px; }
   .card { padding: 24px 20px 20px; }
 }
@@ -301,6 +376,7 @@ p { margin: 0; text-wrap: pretty; }
     <nav class="nav" aria-label="Primary">
       <a class="nav-optional" href="#why">Why</a>
       <a href="#projects">Projects</a>
+      <a class="nav-optional" href="#how-it-fits">How it fits</a>
       <a href="https://github.com/antares-intelligence-org">GitHub</a>
     </nav>
   </div>
@@ -384,6 +460,159 @@ p { margin: 0; text-wrap: pretty; }
       </li>
     </ul>
   </section>
+
+  <section class="fit wrap" id="how-it-fits" aria-labelledby="fit-title">
+    <div class="projects-head">
+      <h2 id="fit-title">How the pieces fit</h2>
+      <div class="fit-intro">
+        <p>Every organization already runs systems it trusts, in a vocabulary it chose. Antares doesn't ask anyone to replace those systems or pour their records into a shared database. Each organization keeps its own graph in Antares-LD, decides in Atrium what it will share, and lets Stinger translate the approved part into NGSI-LD. What crosses the boundary is the signal and a receipt that says where it came from, who approved it, and when. The five whiteboards below walk that pattern through five industries.</p>
+        <p class="fit-note">Antares-Atrium and Antares-Stinger are still planned, so the boards show how the projects are designed to work together, not features you can run today.</p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tablist" role="tablist" aria-label="Scenarios">
+        <button class="tab" role="tab" id="tab-supply" aria-controls="panel-supply" aria-selected="true">Supply chain</button>
+        <button class="tab" role="tab" id="tab-mfg" aria-controls="panel-mfg" aria-selected="false" tabindex="-1">Manufacturing</button>
+        <button class="tab" role="tab" id="tab-fin" aria-controls="panel-fin" aria-selected="false" tabindex="-1">Financial services</button>
+        <button class="tab" role="tab" id="tab-health" aria-controls="panel-health" aria-selected="false" tabindex="-1">Healthcare</button>
+        <button class="tab" role="tab" id="tab-research" aria-controls="panel-research" aria-selected="false" tabindex="-1">Research</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-supply" aria-labelledby="tab-supply" tabindex="0">
+        <figure class="board">
+          <img src="assets/boards/board-1-supply-chain.jpg" width="2000" height="1116" loading="lazy" decoding="async" alt="Whiteboard diagram, Will the right stock be on the dock for the delivery? The full text is below.">
+        </figure>
+        <div class="panel-body">
+          <div class="panel-meta">
+            <p class="kicker">Supply chain · Cold chain</p>
+            <a class="fullsize" href="assets/boards/board-1-supply-chain.jpg">Open the full-size board</a>
+          </div>
+          <div class="panel-text">
+            <p class="caption">A distribution center treats its receiving dock as a custody gate. A pallet becomes available only after the acceptance check fires and its receipt is recorded, and the retailer sees evidence for its own order, never the DC's private graph.</p>
+            <details class="transcript">
+              <summary>Read the board as text</summary>
+              <div class="transcript-body">
+                <p><strong>Supply chain · cold chain.</strong> Will the right stock be on the dock for the delivery? A store order is the demand unit. Hold flexibility upstream, not buffers at the dock.</p>
+                <p><strong>The supply chain.</strong> Under Supplier &amp; Logistics, a Central Warehouse holds a pool of unallocated stock, and a Carrier / WMS tracks lane lead times and dock capacity. Stinger carries shipments, ETAs, and capability checks between the warehouse and the DC Atrium, translating the data in both directions.</p>
+                <p><strong>The receiving gateway.</strong> The DC Atrium holds a Dock Capability Profile (hours, cold storage, capacity, holidays) and Antares-LD, the lot genealogy, state, and custody ledger. It governs incoming stock and order readiness. A second Stinger translates approved data from the ERP.</p>
+                <p><strong>The gateway to the order.</strong> A receiving check stands between the DC Atrium and the Order Supply Commitment: scan pallets, check temp loggers, and confirm quantity on receipt. A receipt records the result. The commitment serves store orders (demand-pull, short window) and promotions and seasonal models (forecasting window). Retailer requests are answered with DC-approved evidence. The retailer sees its order's view, not the DC's private graph.</p>
+                <p><strong>How do we know a pallet is sellable?</strong> On receipt, the dock's acceptance gate must fire: packing slip match, temp logger check, same-day logging. If it fails or is incomplete, it goes to received-hold. The ERP can never silently make it available.</p>
+                <p>A supply chain is a custody system that sometimes runs forecasting models.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-mfg" aria-labelledby="tab-mfg" tabindex="0">
+        <figure class="board">
+          <img src="assets/boards/board-2-process-manufacturing.jpg" width="2000" height="1116" loading="lazy" decoding="async" alt="Whiteboard diagram, One raw-material change. Three companies. The full text is below.">
+        </figure>
+        <div class="panel-body">
+          <div class="panel-meta">
+            <p class="kicker">Process manufacturing</p>
+            <a class="fullsize" href="assets/boards/board-2-process-manufacturing.jpg">Open the full-size board</a>
+          </div>
+          <div class="panel-text">
+            <p class="caption">A supplier changes how an additive is made without revealing the recipe. The compounder traces the affected lot to two batches, and the brand owner makes its call with a receipt that records which version of the notice it relied on.</p>
+            <details class="transcript">
+              <summary>Read the board as text</summary>
+              <div class="transcript-body">
+                <p><strong>Process manufacturing.</strong> One raw-material change. Three companies. Which batches are affected, and what did we know when we made the call?</p>
+                <p><strong>Chemical supplier.</strong> "We're changing how additive A-17 is made." It issues Notice v1: additive A-17, first affected lot L-04. The recipe is kept private.</p>
+                <p><strong>Compounder.</strong> "Where did that lot go?" Lot L-04 went into batches B-12 and B-13, with lab data on change impact. It shares only the approved list of affected batches and the supporting evidence.</p>
+                <p><strong>Brand owner.</strong> "What does this change mean for our product?" Evidence on B-12 and B-13 goes to Quality and Engineering, who decide to release, re-test, or hold.</p>
+                <p><strong>Between them.</strong> Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the compounder exchange the change notice and lot questions (Notice v1, lot L-04). The compounder and the brand owner exchange batch evidence and impact questions (batches B-12 and B-13). NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.</p>
+                <p><strong>Receipt.</strong> Supplier / Compounder: lot L-04, batches B-12 and B-13, Notice v1, Quality and Engineering, Nov 20.</p>
+                <p>"If the supplier corrects the notice, show what changed. Keep the version we used for the original decision."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-fin" aria-labelledby="tab-fin" tabindex="0">
+        <figure class="board">
+          <img src="assets/boards/board-3-financial-services.jpg" width="2000" height="1116" loading="lazy" decoding="async" alt="Whiteboard diagram, One invoice. Financed once. The full text is below.">
+        </figure>
+        <div class="panel-body">
+          <div class="panel-meta">
+            <p class="kicker">Financial services · Trade finance</p>
+            <a class="fullsize" href="assets/boards/board-3-financial-services.jpg">Open the full-size board</a>
+          </div>
+          <div class="panel-text">
+            <p class="caption">A supplier wants to finance an invoice. The buyer confirms it's owed, the lender records the financing, and a second lender learns only that the invoice is already financed, with a receipt and none of the first lender's terms.</p>
+            <details class="transcript">
+              <summary>Read the board as text</summary>
+              <div class="transcript-body">
+                <p><strong>Financial services · trade finance.</strong> One invoice. Financed once. The buyer confirms it, the lender records it, and nobody shares their books.</p>
+                <p><strong>Supplier.</strong> "We'd like to finance invoice INV-2207." The invoice carries an amount, a due date, and the buyer.</p>
+                <p><strong>Buyer (accounts payable).</strong> "Is this invoice real, and do we owe it?" It confirms the invoice is approved for payment and shares the confirmation, not the ledger.</p>
+                <p><strong>Lender.</strong> "Has anyone else already financed it?" The buyer's confirmation and the financing status feed the credit decision: fund, decline, or ask for more. A second lender asking about INV-2207 gets "already financed" and a receipt, not the first lender's name, rate, or terms.</p>
+                <p><strong>Between them.</strong> Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the buyer exchange the invoice and its confirmation. The buyer and the lender exchange the approval for payment and the financing status. NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.</p>
+                <p><strong>Receipt.</strong> Buyer / Lender: INV-2207, approved for payment, AP approver, financed, Nov 20.</p>
+                <p>"If the buyer adjusts the invoice, every lender holding it sees the change. The version they funded against stays on the record."</p>
+                <p>Share the confirmation and its receipt. Keep the books where they belong.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-health" aria-labelledby="tab-health" tabindex="0">
+        <figure class="board">
+          <img src="assets/boards/board-4-healthcare.jpg" width="2000" height="1116" loading="lazy" decoding="async" alt="Whiteboard diagram, One hospital. Three systems. One shared picture. The full text is below.">
+        </figure>
+        <div class="panel-body">
+          <div class="panel-meta">
+            <p class="kicker">Healthcare · Hospital operations</p>
+            <a class="fullsize" href="assets/boards/board-4-healthcare.jpg">Open the full-size board</a>
+          </div>
+          <div class="panel-text">
+            <p class="caption">An isolation precaution moves from infection prevention to facilities and environmental services. The lab result and chart stay in the clinical system. What moves is the approved precaution, the measured room pressure, and the record of completed cleaning.</p>
+            <details class="transcript">
+              <summary>Read the board as text</summary>
+              <div class="transcript-body">
+                <p><strong>Healthcare · hospital operations.</strong> One hospital. Three systems. One shared picture. The lab, the building, and the response team can coordinate without sharing the whole chart.</p>
+                <p><strong>Clinical AI · Infection Prevention.</strong> A lab result comes back for a patient in the ICU. Infection Prevention reviews it and releases an approved airborne-isolation signal for ICU Room 12. The lab result and chart stay in the clinical system. Its Stinger translates existing system messages into approved NGSI-LD updates. No equipment replacement is required for this example.</p>
+                <p><strong>Physical AI · Facilities.</strong> The building team checks the room. The building system reports the measured pressure status, not just that it received a command. Facilities receives the authorized alert and reports measured pressure.</p>
+                <p><strong>Operational AI · Environmental Services.</strong> The supervisor assigns the cleaning response under hospital policy. The team records when the work is complete. Environmental Services receives the authorized alert and reports completion.</p>
+                <p><strong>Antares Atrium.</strong> Controls what each team may share and receive. Inside it, Antares-LD, the NGSI-LD broker, holds the shared room status and its history: the approved precaution, the measured room status, and task completion.</p>
+                <p><strong>The receipt.</strong> Source, what was observed or approved, who authorized it, and when it happened.</p>
+                <p>Share the signal and its receipt. Keep the record where it belongs.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-research" aria-labelledby="tab-research" tabindex="0">
+        <figure class="board">
+          <img src="assets/boards/board-5-research.jpg" width="2000" height="1116" loading="lazy" decoding="async" alt="Whiteboard diagram, One pipe. Each organization keeps its own language. The full text is below.">
+        </figure>
+        <div class="panel-body">
+          <div class="panel-meta">
+            <p class="kicker">Clinical research</p>
+            <a class="fullsize" href="assets/boards/board-5-research.jpg">Open the full-size board</a>
+          </div>
+          <div class="panel-text">
+            <p class="caption">A research site and a sponsor each keep their own vocabulary. They agree on a versioned <code>@context</code>, the site maps only approved evidence, and every release carries a receipt naming the context and mapping versions it used.</p>
+            <details class="transcript">
+              <summary>Read the board as text</summary>
+              <div class="transcript-body">
+                <p><strong>Clinical research.</strong> One pipe. Each organization keeps its own language. A sponsor publishes the terms. The site decides what to send and supplies the receipts.</p>
+                <p><strong>Research site / producer.</strong> Site Atrium controls scope and approves a context version. The Antares-LD broker holds the site's private graph and vocabulary. Site Stinger maps approved evidence before it leaves the site. In the private site model, <code>PARTICIPANT_ID</code> is the site's identifier, and it stays inside the site's boundary.</p>
+                <p><strong>Sponsor / consumer.</strong> Sponsor Atrium exposes a versioned study <code>@context</code> endpoint. The Antares-LD broker holds the sponsor's own graph and vocabulary. Sponsor Stinger receives the approved view and verifies its receipt. In the approved sponsor view, <code>SUBJ_ID</code> is a study-scoped value. Another sponsor can use <code>SUBJID</code> instead.</p>
+                <p><strong>NGSI-LD federation.</strong> First, agree the vocabulary: Site Stinger references the approved sponsor <code>@context</code> version only. Second, request approved evidence: Site Stinger retrieves and maps approved data locally. Third, evidence and receipt: NGSI-LD evidence travels with its receipt, with no access to either private graph.</p>
+                <p><strong>The receipt.</strong> Source reference, context version, mapping version, release authority, and release time. A new sponsor context version is a new approval, not a silent change to what the site sends.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -400,5 +629,42 @@ p { margin: 0; text-wrap: pretty; }
   </div>
 </footer>
 
+<script>
+/* Scenario tabs. Without this script every board shows, stacked, with no tab bar. */
+(function () {
+  var list = document.querySelector('.tablist');
+  if (!list) return;
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+  document.documentElement.classList.add('js');
+
+  function select(tab, moveFocus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (moveFocus) tab.focus();
+    /* Keep the selected tab visible when the bar scrolls sideways, without moving the page. */
+    var left = tab.offsetLeft - list.offsetLeft;
+    if (left < list.scrollLeft) list.scrollLeft = left;
+    else if (left + tab.offsetWidth > list.scrollLeft + list.clientWidth) list.scrollLeft = left + tab.offsetWidth - list.clientWidth;
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
+    });
+  });
+
+  select(tabs[0], false);
+})();
+</script>
 </body>
 </html>
