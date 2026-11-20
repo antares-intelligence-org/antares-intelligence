@@ -1,0 +1,24 @@
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Site build output (Zola) and package tooling
+public/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# Font files used to regenerate the logo stay outside the repository
+*.ttf
+*.otf
+*.woff
+*.woff2
