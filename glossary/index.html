@@ -35,7 +35,7 @@
   "hasDefinedTerm": [
     { "@type": "DefinedTerm", "name": "@context", "url": "https://antares-intelligence.org/glossary/#context", "description": "The JSON-LD document that maps the short names in an NGSI-LD payload to full, unambiguous URIs. Versioning it is how two organizations agree on a vocabulary." },
     { "@type": "DefinedTerm", "name": "Antares-Atrium", "url": "https://antares-intelligence.org/glossary/#antares-atrium", "description": "The Antares project that governs sharing: it controls what each partner may share and receive, approves the vocabulary version in use, and lets subscribers replay what they missed. In design." },
-    { "@type": "DefinedTerm", "name": "Antares-LD", "url": "https://antares-intelligence.org/glossary/#antares-ld", "description": "An open-source NGSI-LD context broker written in Rust that runs as a single binary with no database server and keeps current state and history. A working prototype with no release yet." },
+    { "@type": "DefinedTerm", "name": "Antares Core", "url": "https://antares-intelligence.org/glossary/#antares-ld", "description": "An open-source NGSI-LD context broker written in Rust that runs as a single binary with no database server and keeps current state and history. A working prototype with no release yet." },
     { "@type": "DefinedTerm", "name": "Antares-Stinger", "url": "https://antares-intelligence.org/glossary/#antares-stinger", "description": "The Antares project that translates approved data between source systems and NGSI-LD, and holds updates locally when the network goes down. In design." },
     { "@type": "DefinedTerm", "name": "Apache License 2.0", "url": "https://antares-intelligence.org/glossary/#apache-2", "description": "The permissive open-source license used by the Antares Intelligence projects." },
     { "@type": "DefinedTerm", "name": "Context broker", "url": "https://antares-intelligence.org/glossary/#context-broker", "description": "A server that stores context information and serves it through the NGSI-LD API: queries for current state, temporal history, and subscriptions that notify other systems of changes." },
@@ -55,9 +55,9 @@
     { "@type": "DefinedTerm", "name": "Receipt", "url": "https://antares-intelligence.org/glossary/#receipt", "description": "In Antares, the record that travels with shared information: its source, what was observed or approved, who authorized it, and when." },
     { "@type": "DefinedTerm", "name": "Relationship", "url": "https://antares-intelligence.org/glossary/#relationship", "description": "A link from one NGSI-LD entity to another, such as a sample that belongs to a batch." },
     { "@type": "DefinedTerm", "name": "Replay", "url": "https://antares-intelligence.org/glossary/#replay", "description": "Delivering the changes a downstream system missed while it was offline, in order and without duplicate effects." },
-    { "@type": "DefinedTerm", "name": "Scorpio", "url": "https://antares-intelligence.org/glossary/#scorpio", "description": "An open-source NGSI-LD context broker in the FIWARE ecosystem that runs with a PostgreSQL database. Antares-LD uses it as a behavioral reference." },
+    { "@type": "DefinedTerm", "name": "Scorpio", "url": "https://antares-intelligence.org/glossary/#scorpio", "description": "An open-source NGSI-LD context broker in the FIWARE ecosystem that runs with a PostgreSQL database. Antares Core uses it as a behavioral reference." },
     { "@type": "DefinedTerm", "name": "Smart Data Models", "url": "https://antares-intelligence.org/glossary/#smart-data-models", "description": "An open, collaborative library of shared data models for NGSI-LD and other formats, covering domains from cities to energy to manufacturing." },
-    { "@type": "DefinedTerm", "name": "SQLite", "url": "https://antares-intelligence.org/glossary/#sqlite", "description": "An embedded database that lives in a single file. Antares-LD uses it so the broker needs no separate database server." },
+    { "@type": "DefinedTerm", "name": "SQLite", "url": "https://antares-intelligence.org/glossary/#sqlite", "description": "An embedded database that lives in a single file. Antares Core uses it so the broker needs no separate database server." },
     { "@type": "DefinedTerm", "name": "Subscription", "url": "https://antares-intelligence.org/glossary/#subscription", "description": "A standing request to a broker to be notified when matching context changes." },
     { "@type": "DefinedTerm", "name": "Synthetic data", "url": "https://antares-intelligence.org/glossary/#synthetic-data", "description": "Made-up data that has the shape of real records but describes no real person or customer. Every Antares example and test uses it." },
     { "@type": "DefinedTerm", "name": "Temporal API", "url": "https://antares-intelligence.org/glossary/#temporal-api", "description": "The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state." }
@@ -94,7 +94,7 @@
       <ul class="jump">
         <li><a href="#context">@context</a></li>
         <li><a href="#antares-atrium">Antares-Atrium</a></li>
-        <li><a href="#antares-ld">Antares-LD</a></li>
+        <li><a href="#antares-ld">Antares Core</a></li>
         <li><a href="#antares-stinger">Antares-Stinger</a></li>
         <li><a href="#apache-2">Apache-2.0</a></li>
         <li><a href="#context-broker">Context broker</a></li>
@@ -142,7 +142,7 @@
       </div>
 
       <div class="term" id="antares-ld">
-        <dt>Antares-LD <span class="tag">Antares</span></dt>
+        <dt>Antares Core <span class="tag">Antares</span></dt>
         <dd>
           <p>An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses <a href="#scorpio">Scorpio</a> as its behavioral reference. It's a working prototype with no release yet.</p>
           <p class="also">Repository: <a href="https://github.com/antares-intelligence-org/antares-ld">antares-intelligence-org/antares-ld</a>.</p>
@@ -167,7 +167,7 @@
       <div class="term" id="context-broker">
         <dt>Context broker</dt>
         <dd>
-          <p>A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. <a href="#antares-ld">Antares-LD</a>, <a href="#scorpio">Scorpio</a>, Orion-LD, and Stellio are context brokers.</p>
+          <p>A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. <a href="#antares-ld">Antares Core</a>, <a href="#scorpio">Scorpio</a>, Orion-LD, and Stellio are context brokers.</p>
         </dd>
       </div>
 
@@ -286,7 +286,7 @@
       <div class="term" id="scorpio">
         <dt>Scorpio</dt>
         <dd>
-          <p>An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. <a href="#antares-ld">Antares-LD</a> uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.</p>
+          <p>An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. <a href="#antares-ld">Antares Core</a> uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.</p>
         </dd>
       </div>
 
@@ -300,7 +300,7 @@
       <div class="term" id="sqlite">
         <dt>SQLite</dt>
         <dd>
-          <p>An embedded database that lives in a single file. Antares-LD uses it as its working storage path, which is why the broker needs no separate database server.</p>
+          <p>An embedded database that lives in a single file. Antares Core uses it as its working storage path, which is why the broker needs no separate database server.</p>
         </dd>
       </div>
 
@@ -321,7 +321,7 @@
       <div class="term" id="temporal-api">
         <dt>Temporal API</dt>
         <dd>
-          <p>The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares-LD, the SQLite store serves the temporal API.</p>
+          <p>The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares Core, the SQLite store serves the temporal API.</p>
         </dd>
       </div>
     </dl>

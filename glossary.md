@@ -18,7 +18,7 @@ The governance layer of the Antares family. Atrium controls what each partner ma
 
 Repository: [antares-intelligence-org/antares-atrium](https://github.com/antares-intelligence-org/antares-atrium).
 
-### Antares-LD (Antares)
+### Antares Core (Antares)
 
 An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses [Scorpio](https://antares-intelligence.org/glossary/#scorpio) as its behavioral reference. It's a working prototype with no release yet.
 
@@ -36,7 +36,7 @@ The permissive open-source license the Antares Intelligence projects use. You ca
 
 ### Context broker
 
-A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. [Antares-LD](https://antares-intelligence.org/glossary/#antares-ld), [Scorpio](https://antares-intelligence.org/glossary/#scorpio), Orion-LD, and Stellio are context brokers.
+A server that stores context information and serves it through the NGSI-LD API. Other systems ask it what's true now, look back through its history, or subscribe to be told when something changes. [Antares Core](https://antares-intelligence.org/glossary/#antares-ld), [Scorpio](https://antares-intelligence.org/glossary/#scorpio), Orion-LD, and Stellio are context brokers.
 
 ### Context information
 
@@ -104,7 +104,7 @@ Delivering the changes a downstream system missed while it was offline, in order
 
 ### Scorpio
 
-An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. [Antares-LD](https://antares-intelligence.org/glossary/#antares-ld) uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.
+An open-source NGSI-LD context broker in the FIWARE ecosystem. It runs alongside a PostgreSQL database. [Antares Core](https://antares-intelligence.org/glossary/#antares-ld) uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison of where the two agree and differ.
 
 ### Smart Data Models
 
@@ -112,7 +112,7 @@ An open, collaborative library of shared data models for NGSI-LD and other forma
 
 ### SQLite
 
-An embedded database that lives in a single file. Antares-LD uses it as its working storage path, which is why the broker needs no separate database server.
+An embedded database that lives in a single file. Antares Core uses it as its working storage path, which is why the broker needs no separate database server.
 
 ### Subscription
 
@@ -124,6 +124,6 @@ Made-up data that has the shape of real records but describes no real person or 
 
 ### Temporal API
 
-The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares-LD, the SQLite store serves the temporal API.
+The part of NGSI-LD that answers how an entity changed over a period of time, not just its current state. In Antares Core, the SQLite store serves the temporal API.
 
 Missing a term? Open an issue on [GitHub](https://github.com/antares-intelligence-org/antares-intelligence/issues). This glossary is also available as [plain Markdown](https://antares-intelligence.org/glossary.md).

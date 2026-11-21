@@ -26,7 +26,7 @@ A shared standard gave us a way to describe the whole picture. It didn't tell us
 
 Three open-source projects that carry an NGSI-LD workflow from edge to cloud. Built from the ground up in Rust.
 
-### Antares-LD
+### Antares Core
 
 In progress
 
@@ -34,7 +34,7 @@ Context Broker
 
 An NGSI-LD context broker that keeps current state and history. It lets systems ask what's happening now and look back at what changed.
 
-[antares-ld on GitHub](https://github.com/antares-intelligence-org/antares-ld)
+[Antares Core on GitHub](https://github.com/antares-intelligence-org/antares-ld)
 
 ### Antares-Atrium
 
@@ -58,7 +58,7 @@ Stinger translates approved data between source systems and NGSI-LD. It can link
 
 ## How the pieces fit
 
-Every organization already runs systems it trusts, in a vocabulary it chose. Antares doesn't ask anyone to replace those systems or pour their records into a shared database. Each organization keeps its own graph in Antares-LD, decides in Atrium what it will share, and lets Stinger translate the approved part into NGSI-LD. What crosses the boundary is the signal and a receipt that says where it came from, who approved it, and when. The five whiteboards below walk that pattern through five industries.
+Every organization already runs systems it trusts, in a vocabulary it chose. Antares doesn't ask anyone to replace those systems or pour their records into a shared database. Each organization keeps its own graph in Antares Core, decides in Atrium what it will share, and lets Stinger translate the approved part into NGSI-LD. What crosses the boundary is the signal and a receipt that says where it came from, who approved it, and when. The five whiteboards below walk that pattern through five industries.
 
 Antares-Atrium and Antares-Stinger are still planned, so the boards show how the projects are designed to work together, not features you can run today.
 
@@ -72,7 +72,7 @@ A distribution center treats its receiving dock as a custody gate. A pallet beco
 
 **The supply chain.** Under Supplier & Logistics, a Central Warehouse holds a pool of unallocated stock, and a Carrier / WMS tracks lane lead times and dock capacity. Stinger carries shipments, ETAs, and capability checks between the warehouse and the DC Atrium, translating the data in both directions.
 
-**The receiving gateway.** The DC Atrium holds a Dock Capability Profile (hours, cold storage, capacity, holidays) and Antares-LD, the lot genealogy, state, and custody ledger. It governs incoming stock and order readiness. A second Stinger translates approved data from the ERP.
+**The receiving gateway.** The DC Atrium holds a Dock Capability Profile (hours, cold storage, capacity, holidays) and Antares Core, the lot genealogy, state, and custody ledger. It governs incoming stock and order readiness. A second Stinger translates approved data from the ERP.
 
 **The gateway to the order.** A receiving check stands between the DC Atrium and the Order Supply Commitment: scan pallets, check temp loggers, and confirm quantity on receipt. A receipt records the result. The commitment serves store orders (demand-pull, short window) and promotions and seasonal models (forecasting window). Retailer requests are answered with DC-approved evidence. The retailer sees its order's view, not the DC's private graph.
 
@@ -94,7 +94,7 @@ A supplier changes how an additive is made without revealing the recipe. The com
 
 **Brand owner.** "What does this change mean for our product?" Evidence on B-12 and B-13 goes to Quality and Engineering, who decide to release, re-test, or hold.
 
-**Between them.** Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the compounder exchange the change notice and lot questions (Notice v1, lot L-04). The compounder and the brand owner exchange batch evidence and impact questions (batches B-12 and B-13). NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
+**Between them.** Each company runs its own Atrium, Stinger, and Antares Core, which keeps its own records and history. The supplier and the compounder exchange the change notice and lot questions (Notice v1, lot L-04). The compounder and the brand owner exchange batch evidence and impact questions (batches B-12 and B-13). NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
 
 **Receipt.** Supplier / Compounder: lot L-04, batches B-12 and B-13, Notice v1, Quality and Engineering, Nov 20.
 
@@ -114,7 +114,7 @@ A supplier wants to finance an invoice. The buyer confirms it's owed, the lender
 
 **Lender.** "Has anyone else already financed it?" The buyer's confirmation and the financing status feed the credit decision: fund, decline, or ask for more. A second lender asking about INV-2207 gets "already financed" and a receipt, not the first lender's name, rate, or terms.
 
-**Between them.** Each company runs its own Atrium, Stinger, and Antares-LD, which keeps its own records and history. The supplier and the buyer exchange the invoice and its confirmation. The buyer and the lender exchange the approval for payment and the financing status. NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
+**Between them.** Each company runs its own Atrium, Stinger, and Antares Core, which keeps its own records and history. The supplier and the buyer exchange the invoice and its confirmation. The buyer and the lender exchange the approval for payment and the financing status. NGSI-LD runs between the companies, each keeps its own systems and vocabulary, and Stinger translates the approved information into terms the recipient can use.
 
 **Receipt.** Buyer / Lender: INV-2207, approved for payment, AP approver, financed, Nov 20.
 
@@ -136,7 +136,7 @@ An isolation precaution moves from infection prevention to facilities and enviro
 
 **Operational AI · Environmental Services.** The supervisor assigns the cleaning response under hospital policy. The team records when the work is complete. Environmental Services receives the authorized alert and reports completion.
 
-**Antares Atrium.** Controls what each team may share and receive. Inside it, Antares-LD, the NGSI-LD broker, holds the shared room status and its history: the approved precaution, the measured room status, and task completion.
+**Antares Atrium.** Controls what each team may share and receive. Inside it, Antares Core, the NGSI-LD broker, holds the shared room status and its history: the approved precaution, the measured room status, and task completion.
 
 **The receipt.** Source, what was observed or approved, who authorized it, and when it happened.
 
@@ -150,9 +150,9 @@ A research site and a sponsor each keep their own vocabulary. They agree on a ve
 
 **Clinical research.** One pipe. Each organization keeps its own language. A sponsor publishes the terms. The site decides what to send and supplies the receipts.
 
-**Research site / producer.** Site Atrium controls scope and approves a context version. The Antares-LD broker holds the site's private graph and vocabulary. Site Stinger maps approved evidence before it leaves the site. In the private site model, `PARTICIPANT_ID` is the site's identifier, and it stays inside the site's boundary.
+**Research site / producer.** Site Atrium controls scope and approves a context version. The Antares Core broker holds the site's private graph and vocabulary. Site Stinger maps approved evidence before it leaves the site. In the private site model, `PARTICIPANT_ID` is the site's identifier, and it stays inside the site's boundary.
 
-**Sponsor / consumer.** Sponsor Atrium exposes a versioned study `@context` endpoint. The Antares-LD broker holds the sponsor's own graph and vocabulary. Sponsor Stinger receives the approved view and verifies its receipt. In the approved sponsor view, `SUBJ_ID` is a study-scoped value. Another sponsor can use `SUBJID` instead.
+**Sponsor / consumer.** Sponsor Atrium exposes a versioned study `@context` endpoint. The Antares Core broker holds the sponsor's own graph and vocabulary. Sponsor Stinger receives the approved view and verifies its receipt. In the approved sponsor view, `SUBJ_ID` is a study-scoped value. Another sponsor can use `SUBJID` instead.
 
 **NGSI-LD federation.** First, agree the vocabulary: Site Stinger references the approved sponsor `@context` version only. Second, request approved evidence: Site Stinger retrieves and maps approved data locally. Third, evidence and receipt: NGSI-LD evidence travels with its receipt, with no access to either private graph.
 

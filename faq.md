@@ -2,13 +2,13 @@
 
 # Straight answers, including the ones about what isn't ready
 
-What the projects do, what you can run today, how Antares-LD relates to Scorpio, and how to get involved. When something is a plan rather than a shipped capability, the answer says so.
+What the projects do, what you can run today, how Antares Core relates to Scorpio, and how to get involved. When something is a plan rather than a shipped capability, the answer says so.
 
 ## About Antares Intelligence
 
 ### What is Antares Intelligence?
 
-Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares-LD is a context broker that keeps current state and history. Antares-Atrium governs what each partner may share and receive. Antares-Stinger translates approved data between existing systems and NGSI-LD. Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.
+Antares Intelligence is a family of three open-source projects for sharing context data under the ETSI NGSI-LD standard. Antares Core is a context broker that keeps current state and history. Antares-Atrium governs what each partner may share and receive. Antares-Stinger translates approved data between existing systems and NGSI-LD. Each organization keeps its own systems, vocabulary, and records; what crosses the boundary is the approved signal and a receipt.
 
 ### Who builds it?
 
@@ -22,29 +22,29 @@ No. The projects are domain-neutral and work for any NGSI-LD use: cities, agricu
 
 Yes. The projects are licensed under the Apache License 2.0, so you can use, change, and redistribute them, including commercially. The license doesn't grant permission to use the Antares Intelligence name or logo as your own brand; you may use them to refer to these projects.
 
-## Antares-LD
+## Antares Core
 
-### Is Antares-LD ready for production?
+### Is Antares Core ready for production?
 
-No. Antares-LD is a working prototype with no release yet. There is no released version number and no published binaries, and no platform is listed as supported until it has been verified.
+No. Antares Core is a working prototype with no release yet. There is no released version number and no published binaries, and no platform is listed as supported until it has been verified.
 
-### How is Antares-LD different from Scorpio?
+### How is Antares Core different from Scorpio?
 
-Antares-LD is written in Rust and runs as a single binary with no database server, where Scorpio runs alongside a PostgreSQL database. Antares-LD uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison showing where the two brokers agree, where they differ, and which cases were not run. Where Scorpio departs from the NGSI-LD specification, Antares-LD documents the spec-correct behavior instead of copying the difference.
+Antares Core is written in Rust and runs as a single binary with no database server, where Scorpio runs alongside a PostgreSQL database. Antares Core uses Scorpio as its behavioral reference and plans to publish a case-by-case comparison showing where the two brokers agree, where they differ, and which cases were not run. Where Scorpio departs from the NGSI-LD specification, Antares Core documents the spec-correct behavior instead of copying the difference.
 
-### Can Antares-LD replace Scorpio?
+### Can Antares Core replace Scorpio?
 
 That's the decision the project is built to support, and it isn't one to make yet. The goal is that an engineer running Scorpio can install a verified build, run it against their own workflow, and decide from published evidence. Until there is a release and its comparison evidence, the honest answer is not yet.
 
-### Does Antares-LD conform to the NGSI-LD specification?
+### Does Antares Core conform to the NGSI-LD specification?
 
 The project keeps three kinds of claims separate: conformance to the NGSI-LD specification, observed compatibility with Scorpio, and measured performance. No conformance score is published yet. When one is, it will name the exact build, test suite, storage backend, and caveats, and it will show missing and unrun cases rather than hide them.
 
-### What storage does Antares-LD use?
+### What storage does Antares Core use?
 
 SQLite is the working storage path, and it serves the temporal API, so you can ask how an entity changed over time. An in-memory store exists for exploration and does not keep temporal history. PostgreSQL and PostGIS are not verified and are not supported today.
 
-### What address does Antares-LD listen on?
+### What address does Antares Core listen on?
 
 By default the prototype listens on `0.0.0.0:1026`, the same default port the Orion and Orion-LD brokers use. Set the `ANTARES_BIND` environment variable to change it.
 
@@ -64,7 +64,7 @@ Stinger is the interface translator. It translates approved data between source 
 
 ### Do I need all three projects?
 
-No. Each project stands on its own. None requires another Antares component, a vendor account, or a private dependency to build, test, or run. You can use Antares-LD by itself as an NGSI-LD broker.
+No. Each project stands on its own. None requires another Antares component, a vendor account, or a private dependency to build, test, or run. You can use Antares Core by itself as an NGSI-LD broker.
 
 ## Sharing and data
 
@@ -82,7 +82,7 @@ No. You run the software, and each organization keeps its own records in its own
 
 ### Do the projects work with FIWARE?
 
-Antares-LD implements the NGSI-LD API, the same standard FIWARE context brokers use, and it can use shared data models such as Smart Data Models. The Antares projects are not official FIWARE components.
+Antares Core implements the NGSI-LD API, the same standard FIWARE context brokers use, and it can use shared data models such as Smart Data Models. The Antares projects are not official FIWARE components.
 
 ## Getting involved
 
