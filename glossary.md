@@ -22,7 +22,7 @@ Repository: [antares-intelligence-org/antares-atrium](https://github.com/antares
 
 An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses [Scorpio](https://antares-intelligence.org/glossary/#scorpio) as its behavioral reference. It's a working prototype with no release yet.
 
-Repository: [antares-intelligence-org/antares-ld](https://github.com/antares-intelligence-org/antares-ld).
+Repository: [antares-intelligence-org/antares-core](https://github.com/antares-intelligence-org/antares-core).
 
 ### Antares-Stinger (Antares)
 

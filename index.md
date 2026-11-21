@@ -34,7 +34,7 @@ Context Broker
 
 An NGSI-LD context broker that keeps current state and history. It lets systems ask what's happening now and look back at what changed.
 
-[Antares Core on GitHub](https://github.com/antares-intelligence-org/antares-ld)
+[Antares Core on GitHub](https://github.com/antares-intelligence-org/antares-core)
 
 ### Antares-Atrium
 

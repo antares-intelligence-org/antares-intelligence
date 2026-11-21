@@ -19,7 +19,7 @@ Facts an agent should get right:
 
 ## Projects
 
-- [Antares Core](https://github.com/antares-intelligence-org/antares-ld): NGSI-LD context broker in Rust. Working prototype.
+- [Antares Core](https://github.com/antares-intelligence-org/antares-core): NGSI-LD context broker in Rust. Working prototype.
 - [Antares-Atrium](https://github.com/antares-intelligence-org/antares-atrium): governance layer for NGSI-LD sharing. In design.
 - [Antares-Stinger](https://github.com/antares-intelligence-org/antares-stinger): interface translator between source systems and NGSI-LD. In design.
 - [Ecosystem repository](https://github.com/antares-intelligence-org/antares-intelligence): shared documentation, brand files, and contributing guide.

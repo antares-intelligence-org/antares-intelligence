@@ -19,7 +19,7 @@ Facts an agent should get right:
 
 ## Projects
 
-- [Antares Core](https://github.com/antares-intelligence-org/antares-ld): NGSI-LD context broker in Rust. Working prototype.
+- [Antares Core](https://github.com/antares-intelligence-org/antares-core): NGSI-LD context broker in Rust. Working prototype.
 - [Antares-Atrium](https://github.com/antares-intelligence-org/antares-atrium): governance layer for NGSI-LD sharing. In design.
 - [Antares-Stinger](https://github.com/antares-intelligence-org/antares-stinger): interface translator between source systems and NGSI-LD. In design.
 - [Ecosystem repository](https://github.com/antares-intelligence-org/antares-intelligence): shared documentation, brand files, and contributing guide.
@@ -67,7 +67,7 @@ Context Broker
 
 An NGSI-LD context broker that keeps current state and history. It lets systems ask what's happening now and look back at what changed.
 
-[Antares Core on GitHub](https://github.com/antares-intelligence-org/antares-ld)
+[Antares Core on GitHub](https://github.com/antares-intelligence-org/antares-core)
 
 ### Antares-Atrium
 
@@ -217,7 +217,7 @@ Repository: [antares-intelligence-org/antares-atrium](https://github.com/antares
 
 An open-source NGSI-LD context broker written in Rust. It runs as a single binary with no database server, keeps current state and history, and uses [Scorpio](https://antares-intelligence.org/glossary/#scorpio) as its behavioral reference. It's a working prototype with no release yet.
 
-Repository: [antares-intelligence-org/antares-ld](https://github.com/antares-intelligence-org/antares-ld).
+Repository: [antares-intelligence-org/antares-core](https://github.com/antares-intelligence-org/antares-core).
 
 ### Antares-Stinger (Antares)
 
