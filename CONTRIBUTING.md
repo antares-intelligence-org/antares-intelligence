@@ -32,17 +32,7 @@ Keep code samples real and copyable, and run them before you submit them.
 
 The horizontal lockups in `brand/logos/` (`antares-lockup-horizontal-*.svg`) are drawn as vector outlines and edited directly, as are the two mark files (`antares-mark-*.svg`). The stacked lockups (`antares-lockup-stacked-*.svg`) are generated. Do not edit them by hand.
 
-To change a stacked lockup, edit the matching source file in `references/logo-source/`, then regenerate the outlined copies. The sources set the wordmark in Space Grotesk (ANTARES) and Host Grotesk (INTELLIGENCE), both at weight 700. The script converts that text to vector outlines so the production files need no web fonts.
-
-You need Python 3, the `fonttools` package, and the two variable font files from the [google/fonts](https://github.com/google/fonts) repository (`ofl/spacegrotesk/SpaceGrotesk[wght].ttf` and `ofl/hostgrotesk/HostGrotesk[wght].ttf`). Keep the font files outside this repository.
-
-```bash
-python3 -m pip install fonttools
-```
-
-```bash
-python3 references/logo-source/outline.py "path/to/SpaceGrotesk[wght].ttf" "path/to/HostGrotesk[wght].ttf" brand/logos references/logo-source/antares-lockup-stacked-*.svg
-```
+The editable stacked-lockup sources and generator are not kept in this repository. Coordinate stacked-lockup updates with a maintainer. The published SVGs contain vector outlines and need no web fonts.
 
 Open the results on both a dark and a light background before you submit, and include a screenshot of each in the pull request. Any change to the logo's shape, colors, or type needs an issue and a maintainer's agreement first.
 
@@ -54,7 +44,7 @@ Before you open a pull request, check that:
 - Every new claim names its evidence, or there are no new claims.
 - All example data is synthetic.
 - Links work and code samples run.
-- Stacked lockups in `brand/logos/` were regenerated with the script, not edited by hand.
+- If stacked lockups changed, the replacement SVGs were regenerated from the approved source, not edited by hand.
 
 ## License
 
