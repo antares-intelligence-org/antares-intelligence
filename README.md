@@ -34,7 +34,6 @@ Nothing here is released yet, so this repository makes no claims about versions,
 | Path | Contents |
 | --- | --- |
 | `brand/logos/` | Production logo files: horizontal and stacked lockups for dark and light backgrounds, plus the symbol on its own. The wordmark is converted to outlines, so the files need no web fonts. |
-| `references/logo-source/` | Editable sources for the stacked lockups, which use live fonts, and `outline.py`, the script that converts them to outlines. |
 
 ## Using the logo
 
